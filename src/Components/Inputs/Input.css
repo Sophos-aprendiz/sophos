@@ -1,0 +1,57 @@
+/* En tu archivo de estilos CSS (BotonConMenu.css) */
+
+.contenedor {
+  text-align: center;
+  position: absolute;
+  top: 60%;
+  left: 7%;
+}
+
+.desplegable {
+  position: relative;
+  display: inline-block;
+}
+
+.boton-principal {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid var(--violet);
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.boton-principal:hover {
+  background-color: #f1f1f1;
+}
+
+.contenido-desplegable {
+  display: none;
+  position: absolute;
+  top: 60%;
+  left: 5%;
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.boton-opcion,
+.contenido-desplegable .boton-opcion {
+  width: 100%;
+  top: 60%;
+  left: 5%;
+  text-align: left;
+}
+
+.boton-opcion {
+  padding: 10px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.boton-opcion:hover {
+  background-color: #f1f1f1;
+}

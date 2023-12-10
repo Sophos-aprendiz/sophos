@@ -1,0 +1,22 @@
+.container{
+    width: 93%;
+    position: absolute;
+    top: 77%;
+    left: 2%;
+    display: flex;
+    justify-content: space-evenly;
+}
+.container-client{
+    display: flex;
+    width: 35%;
+}
+.container-desc{
+    display: flex;
+    width: 0%;
+    margin-right: 15px;
+    justify-content: space-evenly;
+}
+.container-days{
+    display: flex;
+    display: 30%;
+}

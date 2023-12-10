@@ -1,0 +1,34 @@
+.block-line{
+    width: 95%;
+    height: 70vh;
+    position: absolute;
+    top: 52%;
+    left: 3%;
+}
+.lineOne{
+    height: 5px;
+    width: 95%;
+    background-color: var(--violet);
+    position: absolute;
+    top: 30%;
+    left: 25px;
+    border-radius: 10px;
+}
+.lineTwo{
+    height: 5px;
+    width: 95%;
+    background-color: var(--violet);
+    position: absolute;
+    top: 45%;
+    left: 25px;
+    border-radius: 10px;
+}
+.lineThree{
+    height: 5px;
+    width: 95%;
+    background-color: var(--violet);
+    position: absolute;
+    top: 65%;
+    left: 25px;
+    border-radius: 10px;
+}
