@@ -25,24 +25,24 @@ const Input = () => {
 
   return (
     <div className="contenedor">
-      <div className="desplegable">
-        <button className="boton-principal" onClick={handleToggleMenu}>
+      <select className="desplegable">
+        <option className="boton-principal" onClick={handleToggleMenu}>
           {opcionSeleccionada ? opcionSeleccionada : 'Selecciona una opción'}
-        </button>
+        </option>
         {mostrarMenu && (
           <div className="contenido-desplegable">
             {opciones.map((opcion, index) => (
-              <button
+              <option
                 key={index}
                 className="boton-opcion"
                 onClick={() => handleOpcionSeleccionada(opcion)}
               >
                 {opcion}
-              </button>
+              </option>
             ))}
           </div>
         )}
-      </div>
+      </select>
     </div>
   );
 };
