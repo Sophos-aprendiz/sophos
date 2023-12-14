@@ -9,6 +9,7 @@ import Desc from "../../Components/Descriptions/Desc.jsx";
 import useSetTokken from "../../hooks/useSetTokken.jsx";
 import useGetUserId from "../../hooks/useGetUserId.jsx";
 import NotAuthorized from "../../Components/NotAuthorized/NotAuthorized.jsx";
+import Info from "../../Components/Info/Info.jsx";
 
 
 const Panel = () => {
@@ -28,6 +29,7 @@ const Panel = () => {
                 <Line/>
                 <Input/>
                 <Desc/>
+                <Info/>
             </div>)
     }else{
         return(

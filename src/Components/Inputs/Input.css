@@ -1,5 +1,3 @@
-/* En tu archivo de estilos CSS (BotonConMenu.css) */
-
 .contenedor {
   text-align: center;
   position: absolute;
@@ -11,47 +9,18 @@
   position: relative;
   display: inline-block;
 }
-
-.boton-principal {
+.select-hours {
+  
   padding: 10px;
   font-size: 16px;
-  border: 2px solid var(--violet);
-  background-color: var(--white);
-  color: var(--black);
-  cursor: pointer;
-  border-radius: 10px;
-}
-
-.boton-principal:hover {
-  background-color: #f1f1f1;
-}
-
-.contenido-desplegable {
-  display: none;
-  position: absolute;
-  top: 60%;
-  left: 5%;
-  background-color: #fff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-
-.boton-opcion,
-.contenido-desplegable .boton-opcion {
+  border: 1px solid var(--violet);
+  border-radius: 5px;
   width: 100%;
-  top: 60%;
-  left: 5%;
-  text-align: left;
-}
-
-.boton-opcion {
-  padding: 10px;
-  border: none;
-  background-color: #fff;
   cursor: pointer;
-  z-index: 10;
+  outline: none; 
 }
 
-.boton-opcion:hover {
-  background-color: #f1f1f1;
+.select-hours:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 5px var(--violet);
 }

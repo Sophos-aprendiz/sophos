@@ -28,11 +28,11 @@ div div p{
     font-size: 15px;
 }
 .line-box{
-    height: 5px;
-    width: 90%;
+    height: 4px;
+    width: 92%;
     background-color: var(--violet);
     position: absolute;
     top: 40%;
-    left: 80px;
+    left: 67px;
     border-radius: 10px;
   }

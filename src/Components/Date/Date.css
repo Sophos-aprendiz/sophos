@@ -1,22 +1,15 @@
 .date{
-    width: 100%;
+    width: 98%;
     height: 100px;
     position: absolute;
     top: 30%;
-    left: 0;
+    left: 2%;
     display: flex;
     justify-content: center;
     align-items: center;
     
 }
-div input{
-    width: 130px;
-    height: 40px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-radius: 10px;
-    border: 2px solid var(--violet);
-}
+
 .button{
     width: 130px;
     height: 40px;
@@ -30,14 +23,21 @@ div input{
 .week{
     width: 150px;
 }
-.mini-box{
-    width: 19px;
-    background-color: var(--violet);
-    color: var(--white);
+.date-box{
+    width: 160px;
+    height: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--violet);
 }
 .user{
     height: 20px;
     width: 160px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--violet);
 }
 input[type="date"] {
     text-align: center;
@@ -46,11 +46,11 @@ input[type="date"] {
     text-align: center;
   }
   .line-week{
-    height: 5px;
-    width: 90%;
+    height: 4px;
+    width: 94%;
     background-color: var(--violet);
     position: absolute;
     top: 100%;
-    left: 80px;
+    left: 40px;
     border-radius: 10px;
   }

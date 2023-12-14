@@ -49,9 +49,9 @@ header div img{
     
     position: absolute;
     background-color: var(--violet);
-    top: 70px;
+    top: 100px;
     right: 20px;
-    z-index: -1;
+    z-index: 1;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;

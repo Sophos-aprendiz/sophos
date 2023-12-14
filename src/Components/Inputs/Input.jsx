@@ -1,48 +1,56 @@
 import './Input.css'
-import React, { useState } from 'react';
+
 
 const Input = () => {
-  const [mostrarMenu, setMostrarMenu] = useState(false);
-  const [opcionSeleccionada, setOpcionSeleccionada] = useState(null);
-
-  const opciones = [
-    'Horas cargables al cliente',
-    'Horas no cargables al cliente',
-    'Horas por requerimiento cargables al cliente',
-    'Horas por requerimiento cargables al cliente',
-    'General Sophos cargable',
-    'General Sophos NO cargable',
+  const options = [
+    {
+      name:'Horas cargables al cliente',
+      value:"GetTimeEntries"
+    }
+    ,
+    {
+      name:'Horas no cargables al cliente',
+      value:"GetTimeEntriesNC"
+    }
+    ,
+    {
+      name:'Horas por requerimiento cargables al cliente',
+      value:"GetTimeEntriesReqC"
+    }
+    ,
+    {
+      name:'Horas por requerimiento no cargables al cliente',
+      value:"GetTimeEntriesReqNC"
+    }
+    ,
+    {
+      name:'General Sophos Cargable',
+      value:'GetTimeEntriesGsC'
+    }
+    ,
+    {
+      name:'General Sophos No Cargable',
+      value:'GetTimeEntriesGsNC'
+    }
+    
   ];
-
-  const handleToggleMenu = () => {
-    setMostrarMenu(!mostrarMenu);
-  };
-
-  const handleOpcionSeleccionada = (opcion) => {
-    setOpcionSeleccionada(opcion);
-    setMostrarMenu(false);
-  };
 
   return (
     <div className="contenedor">
-      <select className="desplegable">
-        <option className="boton-principal" onClick={handleToggleMenu}>
-          {opcionSeleccionada ? opcionSeleccionada : 'Selecciona una opción'}
-        </option>
-        {mostrarMenu && (
-          <div className="contenido-desplegable">
-            {opciones.map((opcion, index) => (
-              <option
-                key={index}
-                className="boton-opcion"
-                onClick={() => handleOpcionSeleccionada(opcion)}
-              >
-                {opcion}
+      <div className="desplegable">
+      <select className='select-hours'>
+        {
+          options.map((options,index)=>{
+            return(
+              <option value={options.value} key={index}>
+                {options.name}
               </option>
-            ))}
-          </div>
-        )}
+            )
+          })
+        }
       </select>
+
+      </div>
     </div>
   );
 };

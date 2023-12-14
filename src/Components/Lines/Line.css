@@ -6,29 +6,29 @@
     left: 3%;
 }
 .lineOne{
-    height: 5px;
-    width: 95%;
+    height: 4px;
+    width: 94%;
     background-color: var(--violet);
     position: absolute;
     top: 30%;
-    left: 25px;
+    left: 40px;
     border-radius: 10px;
 }
 .lineTwo{
-    height: 5px;
-    width: 95%;
+    height: 4px;
+    width: 94%;
     background-color: var(--violet);
     position: absolute;
     top: 45%;
-    left: 25px;
+    left: 40px;
     border-radius: 10px;
 }
 .lineThree{
-    height: 5px;
-    width: 95%;
+    height: 4px;
+    width: 94%;
     background-color: var(--violet);
     position: absolute;
-    top: 65%;
-    left: 25px;
+    top: 63%;
+    left: 40px;
     border-radius: 10px;
 }
