@@ -26,7 +26,7 @@
     display: flex;
     width: 0%;
     position: relative;
-    left: -6.6%;
+    left: -5%;
 }
 .input-description{
     width: 120px;
@@ -41,7 +41,7 @@
     display: flex;
     display: 50%;
     position: relative;
-    left: -2.3%;
+    left: 1.5%;
 }
 .input-hour{
     width: 40px;

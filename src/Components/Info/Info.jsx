@@ -103,12 +103,12 @@ const Info = () => {
           onChange={(e) => handleChange('domingo', e.target.value)}
         />
         
-        {/* <input
+         <input
           className='input-hour total'
           type="number"
           value={calcularTotal()}
           readOnly
-        /> */}
+        /> 
       </div>
       <button className='button-insert'>Insertar</button>
 
