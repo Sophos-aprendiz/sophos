@@ -30,7 +30,7 @@ const EstadoSemana = () => {
           'https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/GetWeekState',
           {
             params: {
-              userName: 'kevin.jimenez',
+              userName: 'andres.uruburu',
               IdLenguaje: "1",
               DateFilter: "2023-12-11"
             },

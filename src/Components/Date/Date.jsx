@@ -28,7 +28,7 @@ const Date = () => {
 
   let params = {
     // Nombre del usuario 
-    UserId: "a4dae994-3be6-4956-969b-2bda9741e268",
+    UserId: "9bd5a620-e312-461a-84c9-acce33550f0b",
   };
 
   // Esta función asincrónica obtiene el token y la primera semana del usuario

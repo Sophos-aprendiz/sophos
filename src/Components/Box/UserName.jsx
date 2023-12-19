@@ -26,11 +26,12 @@ const UserName = () => {
   
     let params = {
       // Nombre del usuario 
-      UserId: "a4dae994-3be6-4956-969b-2bda9741e268",
+      UserId: "9bd5a620-e312-461a-84c9-acce33550f0b",
     };
   
     // Esta función asincrónica obtiene el token y la primera semana del usuario
     const getListUsers = async () => {
+   
       try {
         // Solicitar el token con axios y guardarlo en el estado y el almacenamiento local
         let { data } = await axios.post(url, credentials, headers);
@@ -64,7 +65,7 @@ const UserName = () => {
       getListUsers();
     }, []);
   
-  
+   
   
     // Mostrar el estado de la semana en la consola
     console.log(listUser)

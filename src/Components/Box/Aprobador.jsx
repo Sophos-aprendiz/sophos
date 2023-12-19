@@ -30,7 +30,7 @@ const Aprobador = () => {
           'https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/getApproverByUserName',
           {
             params: {
-              userName: 'luis.ruizr',
+              userName: 'andres.uruburu',
             },
             headers: {
               Authorization: `Bearer ${authToken}`,

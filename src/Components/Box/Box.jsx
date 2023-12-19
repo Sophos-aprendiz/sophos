@@ -29,7 +29,7 @@ const Box = () => {
 
   let params = {
     // Nombre del usuario 
-    UserName: "kevin.jimenez",
+    UserName: "andres.uruburu",
     WeekDate: "0",
     WeekRate: "0",
   };
