@@ -1,13 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import NotAuthorized from "../../Components/NotAuthorized/NotAuthorized.jsx"
 import Spinner from "../../Components/Spinner/Spinner.jsx";
 import UIPanel from "../../Components/UIPanel/UIPanel.jsx";
 import useGetUserId from "../../hooks/useGetUserId.jsx";
-
+import NotAuthorized from "../../Components/NotAuthorized/NotAuthorized.jsx"
 
 const Panel = () => {
     
-    const {loading,error}=useGetUserId()
+    const {loading,accounts}=useGetUserId()
    
   
 
@@ -16,7 +15,7 @@ const Panel = () => {
             <Spinner/>
             )
     }
-    else if(error)return <NotAuthorized/>
+    else if(accounts<0)return<NotAuthorized/>
     else{
         return(
           <UIPanel/>

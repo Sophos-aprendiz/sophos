@@ -11,9 +11,8 @@ import Spinner from "../Spinner/Spinner"
 
 const UIPanel = () => {
 const {accounts,loading}=useGetUserId()
-if(loading)return (
-    <Spinner/>
-)
+if(loading)return <Spinner/>
+
 else return (
     <div>
                 <Header email={accounts[0].username} />
