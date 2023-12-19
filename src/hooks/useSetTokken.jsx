@@ -1,5 +1,11 @@
+import { useMsal } from "@azure/msal-react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 const useSetTokken=()=>{
+  const [tokken,setTokken]=useState("")
+  const [loading,setLoading]=useState(true)
+  const {accounts}=useMsal();
+
 var data = JSON.stringify({
   "user": "UserSophosChronus.Api",
   "password": "Sophos.2020*#"
@@ -14,13 +20,25 @@ var config = {
   data : data
 };
 const setToken=async()=>{
-    const {data}=await axios(config)
-    window.localStorage.setItem("tokken",data.token)
-    
+  try {
+    if(accounts.length>0){
+
+      const {data}=await axios(config)
+      window.localStorage.setItem("tokken",data.token)
+      setTokken(data.token)
+      setLoading(false)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
 
     
 }
-return setToken
+useEffect(()=>{
+  setToken()
+})
+return [tokken,loading]
 
 }
 export default useSetTokken

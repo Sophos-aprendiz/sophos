@@ -1,37 +1,70 @@
-import { useMsal } from "@azure/msal-react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import {
+  useMsal
+} from "@azure/msal-react";
 import axios from "axios";
-import { useState } from "react";
-const useGetUserId=()=>{
-  const {accounts}=useMsal();
-  const [userId,setUserId]=useState();
-  
-    
-const getUserId=async()=>{
- let user
-  if(accounts.length>0){
+import {
+  useEffect,
+  useState
+} from "react";
+import useSetTokken from "./useSetTokken";
+const useGetUserId = () => {
+  const {
+    accounts,
+    inProgress
+  } = useMsal();
+  const [userId, setUserId] = useState("");
+  const [loading, setLoading] = useState(true)
+  const [tokken, tokkenLoading] = useSetTokken()
 
-    const email=accounts[0].username;
-    user=email.split("@")[0]
-    window.localStorage.setItem("user",user)
-    
-}
 
-const tokken=window.localStorage.getItem("tokken")
+
+  const getUserId = async () => {
+    try {
+      let user
+
+      if (accounts.length>0) {
+
+        const email = accounts[0].username;
+        user = email.split("@")[0]
+
+        window.localStorage.setItem("user", user)
+
+      }
+
 
       var config = {
         method: 'get',
         url: `https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/GetUserdIdbyUsername?userName=${user}`,
-        headers: { 
+        headers: {
           'Authorization': `Bearer ${tokken}`
         }
       };
-const {data}=await axios(config)
-const id=await data.data.userId
-setUserId(id)
-window.localStorage.setItem("userId",id) 
-}
- 
+      const {
+        data
+      } = await axios(config)
+      const id = data.data.userId
+      setUserId(id)
+      window.localStorage.setItem("userId", id)
+      setLoading(false)
 
-return {getUserId,userId,accounts}
+    } catch (error) {
+      console.log(error)
+
+    }
+
+
+  }
+  useEffect(() => {
+    getUserId()
+  }, [tokkenLoading, inProgress])
+
+
+
+  return {
+    userId,
+    loading,
+    accounts
+  }
 }
 export default useGetUserId

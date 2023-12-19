@@ -1,5 +1,4 @@
 import './Total.css'
-import React from 'react'
 
 const Total = () => {
   return (

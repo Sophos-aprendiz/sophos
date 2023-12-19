@@ -14,7 +14,8 @@ const Header = ({email}) => {
   };
 
   const handleLogOut=()=>{
-    instance.logout().catch(error=>console.log(error)).finally(()=> window.localStorage.clear())
+    window.localStorage.clear()
+    instance.logout().catch(error=>console.log(error))
    
   }
   return (
