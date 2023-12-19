@@ -9,10 +9,11 @@ const useGetUserId=()=>{
   const [loading,setLoading]=useState(true)
   const [tokken,tokkenLoading]=useSetTokken()
   
+  
     
 const getUserId=async()=>{
-
-let user
+  try {
+    let user
 
   if(inProgress=="none"){
 
@@ -36,6 +37,13 @@ const id=data.data.userId
 setUserId(id)
 window.localStorage.setItem("userId",id) 
 setLoading(false)
+    
+  } catch (error) {
+    console.log(error)
+    
+  }
+
+
 }
 useEffect(()=>{
   getUserId()

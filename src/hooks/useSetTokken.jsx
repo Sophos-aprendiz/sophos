@@ -20,13 +20,18 @@ var config = {
   data : data
 };
 const setToken=async()=>{
-if(accounts.length>0){
+  try {
+    if(accounts.length>0){
 
-  const {data}=await axios(config)
-  window.localStorage.setItem("tokken",data.token)
-  setTokken(data.token)
-  setLoading(false)
-}
+      const {data}=await axios(config)
+      window.localStorage.setItem("tokken",data.token)
+      setTokken(data.token)
+      setLoading(false)
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
 
     
 }
