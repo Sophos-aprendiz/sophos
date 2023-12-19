@@ -8,32 +8,20 @@ const Aprobador = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Realizar la solicitud POST para obtener el token
-        const tokenResponse = await axios.post(
-          'https://testapp.sophossolutions.com/SophosApiChronus/api/Token',
-          {
-            user: "UserSophosChronus.Api",
-            password: "Sophos.2020*#",
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
 
+          const tokken=window.localStorage.getItem("tokken")
+          const userName=window.localStorage.getItem("user")
         // Obtener el token del resultado
-        const authToken = tokenResponse.data.token;
 
         // Realizar la solicitud GET para obtener los datos del aprobador correspondiente a 'luis.ruizr'
         const response = await axios.get(
           'https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/getApproverByUserName',
           {
             params: {
-              userName: 'andres.uruburu',
+              userName: userName,
             },
             headers: {
-              Authorization: `Bearer ${authToken}`,
+              Authorization: `Bearer ${tokken}`,
             },
           }
         );

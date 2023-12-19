@@ -1,51 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import './Box.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import UserName from './UserName';
 import Aprobador from './Aprobador';
 import EstadoSemana from './EstadoSemana';
+import Spinner from '../Spinner/Spinner';
 
 
 const Box = () => {
     // Definir el estado para el token, la semana y el estado de carga
-  const [tokken, setTokken] = useState("");
   const [week, setWeek] = useState("");
   const [loading, setLoading] = useState(true);
 
 
-  // Definir las constantes para la solicitud de token
-  const url = "https://testapp.sophossolutions.com/SophosApiChronus/api/Token";
-  const credentials = {
-    user: "UserSophosChronus.Api",
-    password: "Sophos.2020*#",
-  };
-  const headers = {
-    "Content-Type": "application/json",
-  };
-
-// Definir las constantes para la solicitud de la primera semana ------------
-  const urlG =
-    "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/getFirstWeekByUserName";
-
-  let params = {
-    // Nombre del usuario 
-    UserName: "andres.uruburu",
-    WeekDate: "0",
-    WeekRate: "0",
-  };
-
+  
   // Esta función asincrónica obtiene el token y la primera semana del usuario
   const getFirstWeek = async () => {
+    const tokken=window.localStorage.getItem("tokken")
+    const userName=window.localStorage.getItem("user")
+    // Definir las constantes para la solicitud de la primera semana ------------
+      const urlG =
+        "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/getFirstWeekByUserName";
+    
+      let params = {
+        // Nombre del usuario 
+        UserName:userName,
+        WeekDate: "0",
+        WeekRate: "0",
+      };
     try {
-      // Solicitar el token con axios y guardarlo en el estado y el almacenamiento local
-      let { data } = await axios.post(url, credentials, headers);
-      setTokken(data.token);
-      window.localStorage.setItem("tokken",data.token)
-      console.log(tokken);
 
       // Definir los encabezados para la solicitud de la primera semana
       let headersG = {
-        Authorization: "Bearer " + data.token,
+        Authorization: "Bearer " + tokken,
       };
 
       // Solicitar la primera semana con axios y guardarla en el estado
@@ -83,8 +71,8 @@ const Box = () => {
         </div>
         <div className='box'>
             <strong><p>Semana</p></strong>
-            <div className='api'> {loading && <h1>Loading...</h1>}
-            {week.length > 0 && <p> {week[0].fecha}</p>}</div>
+            <div className='api'> {loading && <Spinner/>}
+            {week && <p> {week[0].fecha}</p>}</div>
         </div>
         <div className='box'>
             <strong><p>Estado</p></strong>
@@ -96,7 +84,7 @@ const Box = () => {
         </div>
         <div className='box'>
             <strong><p>Pais</p></strong>
-            <div className='api'>*****</div>
+            <div className='api'>Colombia</div>
         </div>
         <div className='line-box'></div>
         

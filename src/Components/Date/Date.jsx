@@ -1,23 +1,16 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
 import './Date.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Spinner from '../Spinner/Spinner';
 
 const Date = () => {
   // Definir el estado para el token, la semana y el estado de carga
-  const [tokken, setTokken] = useState("");
   const [listUser, setLisUser] = useState("")
-  const [loading, setLoading] = useState(true);
+ 
 
-  // Definir las constantes para la solicitud de token
-  const url = "https://testapp.sophossolutions.com/SophosApiChronus/api/Token";
-  const credentials = {
-    user: "UserSophosChronus.Api",
-    password: "Sophos.2020*#",
-  };
-  const headers = {
-    "Content-Type": "application/json",
-  };
+  const tokken=window.localStorage.getItem("tokken")
+  const userId=window.localStorage.getItem("userId")
 
   // Mostrar el estado de la semana en la consola
   console.log(listUser)
@@ -28,21 +21,16 @@ const Date = () => {
 
   let params = {
     // Nombre del usuario 
-    UserId: "9bd5a620-e312-461a-84c9-acce33550f0b",
+    UserId: userId,
   };
 
   // Esta función asincrónica obtiene el token y la primera semana del usuario
   const getListUsers = async () => {
     try {
-      // Solicitar el token con axios y guardarlo en el estado y el almacenamiento local
-      let { data } = await axios.post(url, credentials, headers);
-      setTokken(data.token);
-      window.localStorage.setItem("tokken", data.token)
-      console.log(tokken);
 
       // Definir los encabezados para la solicitud de la primera semana
       let headersG = {
-        Authorization: "Bearer " + data.token,
+        Authorization: "Bearer " + tokken,
       };
 
       // Solicitar la primera semana con axios y guardarla en el estado
@@ -54,7 +42,7 @@ const Date = () => {
       console.log(listUser);
 
       // Cambiar el estado de carga a falso
-      setLoading(false);
+      
     } catch (error) {
       // Mostrar el error en la consola
       console.log(error);
@@ -75,8 +63,12 @@ const Date = () => {
     <div className='date'>
       <label htmlFor=""><strong> Timesheet para usuario: </strong></label>
       <select name="select" className='user'>
-        <option value="value1" >{loading && <h1>Loading...</h1>}
-            {listUser.length > 0 && <p> {listUser[0].userName}</p>}</option>
+      {
+        listUser?listUser.map((user,index)=>{
+          return(<option key={index} value={user.userName}>{user.userName}</option>)
+        }):<Spinner/>
+      }
+  
       </select>
       <label htmlFor=""><strong>Semana de inicio lunes: </strong></label>
       <input type="date" />

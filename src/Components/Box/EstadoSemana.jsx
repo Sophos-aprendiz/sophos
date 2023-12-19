@@ -1,36 +1,22 @@
-import React from 'react'
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 const EstadoSemana = () => {
     const [estadoSemana, setEstadoSemana] = useState({});
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Realizar la solicitud POST para obtener el token
-        const tokenResponse = await axios.post(
-          'https://testapp.sophossolutions.com/SophosApiChronus/api/Token',
-          {
-            user: "UserSophosChronus.Api",
-            password: "Sophos.2020*#",
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          }
-        );
 
         // Obtener el token del resultado
-        const authToken = tokenResponse.data.token;
-
+        const authToken =window.localStorage.getItem("tokken")
+        const userName=window.localStorage.getItem("user")
         const response = await axios.get(
           'https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/GetWeekState',
           {
             params: {
-              userName: 'andres.uruburu',
+              userName: userName,
               IdLenguaje: "1",
               DateFilter: "2023-12-11"
             },
@@ -42,21 +28,22 @@ const EstadoSemana = () => {
 
         // Obtener y establecer los datos del aprobador en el estado
         setEstadoSemana(response.data.data);
-        setLoading(false);
       } catch (error) {
         console.error(error);
-        setLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+ 
 
   return (
     <div>
-      <p>{estadoSemana.status}</p>
+    {
+      estadoSemana?<p>{estadoSemana.status}</p>:<Spinner/>
+    }
+      
     </div>
   );
 }

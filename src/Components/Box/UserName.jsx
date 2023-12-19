@@ -1,22 +1,14 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Spinner from "../Spinner/Spinner";
 
 const UserName = () => {
-    const [tokken, setTokken] = useState("");
     const [listUser, setLisUser] = useState("")
     const [loading, setLoading] = useState(true);
   
-    // Definir las constantes para la solicitud de token
-    const url = "https://testapp.sophossolutions.com/SophosApiChronus/api/Token";
-    const credentials = {
-      user: "UserSophosChronus.Api",
-      password: "Sophos.2020*#",
-    };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-  
+    
+    const userId=window.localStorage.getItem("userId")
     // Mostrar el estado de la semana en la consola
     console.log(listUser)
   
@@ -26,7 +18,7 @@ const UserName = () => {
   
     let params = {
       // Nombre del usuario 
-      UserId: "9bd5a620-e312-461a-84c9-acce33550f0b",
+      UserId:userId
     };
   
     // Esta función asincrónica obtiene el token y la primera semana del usuario
@@ -34,14 +26,12 @@ const UserName = () => {
    
       try {
         // Solicitar el token con axios y guardarlo en el estado y el almacenamiento local
-        let { data } = await axios.post(url, credentials, headers);
-        setTokken(data.token);
-        window.localStorage.setItem("tokken", data.token)
-        console.log(tokken);
+        const tokken=window.localStorage.getItem("tokken")
+    
   
         // Definir los encabezados para la solicitud de la primera semana
         let headersG = {
-          Authorization: "Bearer " + data.token,
+          Authorization: "Bearer " + tokken,
         };
   
         // Solicitar la primera semana con axios y guardarla en el estado
@@ -71,8 +61,8 @@ const UserName = () => {
     console.log(listUser)
   return (
     <div>
-        {loading && <h1>Loading...</h1>}
-            {listUser.length > 0 && <p> {listUser[0].userName}</p>}
+        {loading && <Spinner/>}
+            {listUser && <p> {listUser[0].userName}</p>}
     </div>
   )
 }
