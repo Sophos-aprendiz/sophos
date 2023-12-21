@@ -1,9 +1,8 @@
-import useGetTimeSheet from '../../hooks/useGetTimeSheet';
+/* eslint-disable react/prop-types */
 import './Input.css'
 
 
-const Input = () => {
-  const {setSection}=useGetTimeSheet()
+const Input = ({handleOnChange}) => {
   const options = [
     {
       name:'Horas cargables al cliente',
@@ -36,10 +35,7 @@ const Input = () => {
     }
     
   ];
-  const handleOnChange = (event) => {
-    const value = event.target.value;
-    setSection(value);
-  };
+
   return (
     <div className="contenedor">
       <div className="desplegable">

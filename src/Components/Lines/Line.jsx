@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { TimeSheet } from '../TimeSheet/TimeSheet'
 import './Line.css'
 
 
-const Line = () => {
+const Line = ({timeSheet,loading}) => {
   return (
     <div className='block-line'>
         <div className='lineOne'></div>
@@ -10,7 +11,7 @@ const Line = () => {
         </div>
         <div className='lineThree'>
 
-        <TimeSheet/>
+        <TimeSheet timeSheet={timeSheet} loading={loading}/>
         </div>
     </div>
     
