@@ -1,12 +1,14 @@
 import './Block.css'
 import Total from '../Total/Total'
-import React from 'react'
 
 const Block = () => {
   return (
     <div className='div-block'>
-        <div className='block'></div>
+        <div className='block'>
+
+        </div>
         <div className='blockTwo'>
+       
           <div className='title'>
             <div className='concept'> Concepto </div>
             <div className='results'>

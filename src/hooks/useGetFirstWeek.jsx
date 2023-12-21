@@ -7,12 +7,13 @@ const useGetFirstWeek = () => {
   const [week, setWeek] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const tokken=window.localStorage.getItem("tokken")
+  
+  const userName=window.localStorage.getItem("user")
 
   
   // Esta función asincrónica obtiene el token y la primera semana del usuario
   const getFirstWeek = async () => {
-    const tokken=window.localStorage.getItem("tokken")
-    const userName=window.localStorage.getItem("user")
     // Definir las constantes para la solicitud de la primera semana ------------
       const urlG =
         "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/getFirstWeekByUserName";
@@ -36,7 +37,6 @@ const useGetFirstWeek = () => {
         params,
       });
       setWeek(responseGetWeek.data.data[0].fecha);
-      console.log(week);
 
       // Cambiar el estado de carga a falso
       setLoading(false);

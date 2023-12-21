@@ -9,9 +9,7 @@ const UserName = () => {
   
     
     const userId=window.localStorage.getItem("userId")
-    // Mostrar el estado de la semana en la consola
-    console.log(listUser)
-  
+
     // Definir las constantes para la solicitud de la lista de usuarios ------------
     const urlG =
       "https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/getUsersByApprover";
@@ -40,7 +38,6 @@ const UserName = () => {
           params,
         });
         setLisUser(responseListUser.data.data);
-        console.log(listUser);
   
         // Cambiar el estado de carga a falso
         setLoading(false);
@@ -56,9 +53,7 @@ const UserName = () => {
     }, []);
   
    
-  
-    // Mostrar el estado de la semana en la consola
-    console.log(listUser)
+
   return (
     <div>
         {loading && <Spinner/>}

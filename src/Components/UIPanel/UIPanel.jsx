@@ -11,6 +11,7 @@ import Spinner from "../Spinner/Spinner"
 
 const UIPanel = () => {
 const {accounts,loading}=useGetUserId()
+
 if(loading)return <Spinner/>
 
 else return (
@@ -22,6 +23,7 @@ else return (
                 <Line/>
                 <Input/>
                 <Desc/>
+
                 <Info/>
     </div>
   )

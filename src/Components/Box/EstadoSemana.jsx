@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
-import useGetFirstWeek from "./useGetFirstWeek";
+import useGetFirstWeek from "../../hooks/useGetFirstWeek";
 import { formatDate } from "../../utils/formatDate";
 
 const EstadoSemana = () => {

@@ -13,7 +13,6 @@ const Date = () => {
   const userId=window.localStorage.getItem("userId")
 
   // Mostrar el estado de la semana en la consola
-  console.log(listUser)
 
   // Definir las constantes para la solicitud de la lista de usuarios ------------
   const urlG =
@@ -39,7 +38,6 @@ const Date = () => {
         params,
       });
       setLisUser(responseListUser.data.data);
-      console.log(listUser);
 
       // Cambiar el estado de carga a falso
       
@@ -56,20 +54,19 @@ const Date = () => {
 
 
 
-  // Mostrar el estado de la semana en la consola
-  console.log(listUser)
+
 
   return (
     <div className='date'>
       <label htmlFor=""><strong> Timesheet para usuario: </strong></label>
-      <select name="select" className='user'>
+     
       {
-        listUser?listUser.map((user,index)=>{
+        listUser?<select name="select" className='user'>{listUser.map((user,index)=>{
           return(<option key={index} value={user.userName}>{user.userName}</option>)
-        }):<Spinner/>
+        }) }
+      </select>:<Spinner/>
       }
-  
-      </select>
+ 
       <label htmlFor=""><strong>Semana de inicio lunes: </strong></label>
       <input type="date" />
       <button className='week button'>Semana Anterior</button>

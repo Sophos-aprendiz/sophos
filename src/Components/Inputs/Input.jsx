@@ -1,7 +1,9 @@
+import useGetTimeSheet from '../../hooks/useGetTimeSheet';
 import './Input.css'
 
 
 const Input = () => {
+  const {setSection}=useGetTimeSheet()
   const options = [
     {
       name:'Horas cargables al cliente',
@@ -34,11 +36,14 @@ const Input = () => {
     }
     
   ];
-
+  const handleOnChange = (event) => {
+    const value = event.target.value;
+    setSection(value);
+  };
   return (
     <div className="contenedor">
       <div className="desplegable">
-      <select className='select-hours'>
+      <select onChange={handleOnChange} className='select-hours'>
         {
           options.map((options,index)=>{
             return(

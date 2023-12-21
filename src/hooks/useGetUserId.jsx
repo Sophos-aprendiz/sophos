@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from "react";
-import useSetTokken from "./useSetTokken";
+import useSetTokken from "./useSetTokken"
 const useGetUserId = () => {
   const {
     accounts,
@@ -15,7 +15,10 @@ const useGetUserId = () => {
   } = useMsal();
   const [userId, setUserId] = useState("");
   const [loading, setLoading] = useState(true)
-  const [tokken, tokkenLoading] = useSetTokken()
+  // eslint-disable-next-line no-unused-vars
+  const [tokken,loadingTokken]=useSetTokken()
+
+  const authToken =window.localStorage.getItem("tokken")
 
 
 
@@ -37,7 +40,7 @@ const useGetUserId = () => {
         method: 'get',
         url: `https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/GetUserdIdbyUsername?userName=${user}`,
         headers: {
-          'Authorization': `Bearer ${tokken}`
+          'Authorization': `Bearer ${authToken}`
         }
       };
       const {
@@ -57,7 +60,7 @@ const useGetUserId = () => {
   }
   useEffect(() => {
     getUserId()
-  }, [tokkenLoading, inProgress])
+  }, [ loadingTokken,inProgress])
 
 
 

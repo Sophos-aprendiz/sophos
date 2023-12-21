@@ -1,5 +1,5 @@
 import './Info.css'
-import React,{useState} from 'react'
+import {useState} from 'react'
 const Info = () => {
   const [dias, setDias] = useState({
     lunes: '',
