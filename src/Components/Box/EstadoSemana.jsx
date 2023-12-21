@@ -1,14 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
+import useGetFirstWeek from "./useGetFirstWeek";
+import { formatDate } from "../../utils/formatDate";
 
 const EstadoSemana = () => {
     const [estadoSemana, setEstadoSemana] = useState({});
+    const [week,loading]=useGetFirstWeek()
 
-  useEffect(() => {
     const fetchData = async () => {
       try {
-
+        
         // Obtener el token del resultado
         const authToken =window.localStorage.getItem("tokken")
         const userName=window.localStorage.getItem("user")
@@ -18,7 +21,7 @@ const EstadoSemana = () => {
             params: {
               userName: userName,
               IdLenguaje: "1",
-              DateFilter: "2023-12-11"
+              DateFilter: formatDate(week)
             },
             headers: {
               Authorization: `Bearer ${authToken}`,
@@ -32,9 +35,10 @@ const EstadoSemana = () => {
         console.error(error);
       }
     };
-
-    fetchData();
-  }, []);
+  useEffect(() => {
+    if(week)fetchData()
+    
+  }, [loading]);
 
  
 
