@@ -1,12 +1,16 @@
+import { createContext, useEffect, useState } from "react";
+import { formatDate } from "../../utils/formatDate";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import useGetFirstWeek from "./useGetFirstWeek";
-import { formatDate } from "../utils/formatDate";
+import useGetFirstWeek from "../../hooks/useGetFirstWeek";
 
-const useGetTimeSheet = () => {
+export const TimeSheetContext = createContext();
+// eslint-disable-next-line react/prop-types
+export const TimeSheetProvider = ({ children }) => {
+  const [section, setSection] = useState("GetTimeEntries");
   const [week] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
+  const [selectTimesheet, setSelectTimesheet] = useState();
   const options = [
     {
       value: "GetTimeEntries",
@@ -28,7 +32,6 @@ const useGetTimeSheet = () => {
     },
   ];
   const getTimeSheet = async (section) => {
-    setLoading(true);
     try {
       const authToken = window.localStorage.getItem("tokken");
       const userName = window.localStorage.getItem("user");
@@ -54,12 +57,14 @@ const useGetTimeSheet = () => {
   const getAllTimeSheets = async () => {
     try {
       const timeSheets = {};
-      await options.forEach(async (option) => {
+      const initialTimeSheet = [];
+      await options.forEach(async (option, index) => {
         let timeSheet = await getTimeSheet(option.value);
-
+        if (index == 0) setSelectTimesheet(timeSheet.data);
         timeSheets[option.value] = timeSheet.data;
       });
       setTimeSheet(timeSheets);
+      setSelectTimesheet(initialTimeSheet);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -69,7 +74,15 @@ const useGetTimeSheet = () => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [week]);
-  return { timeSheet, loading };
+  useEffect(() => {
+    if (Object.keys(timeSheet).length) setSelectTimesheet(timeSheet[section]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [section]);
+  return (
+    <TimeSheetContext.Provider
+      value={{ timeSheet, selectTimesheet, loading, setSection, section }}
+    >
+      {children}
+    </TimeSheetContext.Provider>
+  );
 };
-
-export default useGetTimeSheet;
