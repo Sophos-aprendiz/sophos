@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
-import { TimeSheet } from '../TimeSheet/TimeSheet'
 import './Line.css'
 
 
-const Line = ({timeSheet,loading}) => {
+const Line = ({children}) => {
   return (
     <div className='block-line'>
         <div className='lineThree'>
+        
         <TimeSheet timeSheet={timeSheet} loading={loading}/>
+
+        {children}
         </div>
     </div>
     
