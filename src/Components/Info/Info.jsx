@@ -34,6 +34,7 @@ const Info = () => {
         <select className='select'></select>
         <select className='select'></select>
         <select className='select'></select>
+        <select className='select'></select>
         </div>
       <div className='container-two'>
          <input className='input-description' type="text"/>

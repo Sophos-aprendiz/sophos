@@ -2,7 +2,7 @@ import React from 'react';
 
 const ListaInfo = ({ data }) => {
   return (
-    <ul>
+    <ul className='lista'>
       {data.map((item, index) => (
         <li key={index}>{item}</li>
       ))}

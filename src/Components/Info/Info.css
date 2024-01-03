@@ -1,23 +1,24 @@
 .container-info{
     width: 93%;
-    height: 50px;
+    height: 100px;
     position: absolute;
-    top: 86%;
-    left: 5%;
+    top: 83%;
+    left: 3.2%;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: start;
 }
 /*-----------------------------------------------------------------------------------------*/
 .container-one{
     display: flex;
-    width: 35%;
-    margin-left: 7px;
+    width: 42%;
+    display: flex;
+    justify-content: space-evenly;
 }
 .select{
-    width: 140px;
+    width: 110px;
     height: 20px;
-    margin-left: 12px;
+    margin-left: 20px;
     border: 1px solid var(--violet);
     border-radius: 10px;
 }
@@ -26,7 +27,7 @@
     display: flex;
     width: 0%;
     position: relative;
-    left: -5%;
+    left: -4%;
 }
 .input-description{
     width: 120px;
@@ -41,7 +42,7 @@
     display: flex;
     display: 50%;
     position: relative;
-    left: 1.5%;
+    left: 0.5%;
 }
 .input-hour{
     width: 40px;
@@ -57,12 +58,13 @@
     text-align: center;
   }
 .button-insert{
-    width: 80px;
-    height: 40px;
+    width: 20%;
+    height: 27px;
     background-color: var(--violet);
     color: var(--white);
     border: 0;
     border-radius: 20px;
-    position: relative;
-    left: -4%;
+    position: absolute;
+    top: 65px;
+    left: 40%;
 }

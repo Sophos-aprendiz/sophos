@@ -1,14 +1,16 @@
 .container{
-    width: 93%;
+    width: 95%;
     position: absolute;
-    top: 77%;
-    left: 2%;
+    top: 72%;
+    left: 2.5%;
     display: flex;
     justify-content: space-evenly;
+    
 }
 .container-client{
     display: flex;
-    width: 35%;
+    width: 45%;
+    left: -2%;
 }
 .container-desc{
     display: flex;
@@ -20,5 +22,8 @@
     display: flex;
     display: 30%;
     position: relative;
-    left: -3%;
+    left: -0.8%;
+}
+p{
+    font-size: 2px;
 }
