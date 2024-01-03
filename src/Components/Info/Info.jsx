@@ -1,5 +1,7 @@
 import './Info.css'
 import {useState} from 'react'
+import InsertTimeEntry from '../../hooks/InsertTimeEntry.jsx'
+
 const Info = () => {
   const [dias, setDias] = useState({
     lunes: '',
@@ -22,12 +24,27 @@ const Info = () => {
       }));
     }
   };
+  
 
   const calcularTotal = () => {
     // Calcular la suma de los valores de los días
     const total = Object.values(dias).reduce((acc, curr) => acc + curr, 0);
     return total;
   };
+  
+  const insertTimeEntry = InsertTimeEntry(); // Obtén la función de useInsertTimeEntry
+
+  const handleInsert = async () => {
+    try {
+      // Aquí puedes utilizar la función insertTimeEntry para realizar la inserción
+      await insertTimeEntry(dias); // Asumiendo que insertTimeEntry acepta un objeto con días como argumento
+      console.log('Inserción exitosa'); // Opcional: Mostrar mensaje de éxito
+    } catch (error) {
+      console.error('Error al insertar:', error); // Opcional: Mostrar mensaje de error
+    }
+  };
+  
+  
   return (
     <div className='container-info'>
       <div className='container-one'>
@@ -110,7 +127,9 @@ const Info = () => {
           readOnly
         /> 
       </div>
-      <button className='button-insert'>Insertar</button>
+      <button className='button-insert' onClick={handleInsert}>
+        Insertar
+      </button>
 
     </div>
   )
