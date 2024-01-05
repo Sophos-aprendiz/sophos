@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { formatDate } from "../../utils/formatDate";
 import axios from "axios";
 import useGetFirstWeek from "../../hooks/useGetFirstWeek";
+import { getTotal } from "../../utils/getTotal";
 
 export const TimeSheetContext = createContext();
 // eslint-disable-next-line react/prop-types
@@ -54,6 +55,32 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
+  let total = [
+    {
+      name: "TOTAL HORAS - CLIENTE NO CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntries"]),
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE NO CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntriesNC"]),
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntriesReqC"]),
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS NO CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntriesReqNC"]),
+    },
+    {
+      name: "TOTAL HORAS - SOPHOS NO CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntriesGsC"]),
+    },
+    {
+      name: "TOTAL HORAS - SOPHOS CARGABLE",
+      hours: getTotal(timeSheet["GetTimeEntriesGsNC"]),
+    },
+  ];
   const getAllTimeSheets = async () => {
     try {
       const timeSheets = {};
@@ -65,23 +92,35 @@ export const TimeSheetProvider = ({ children }) => {
       });
       setTimeSheet(timeSheets);
       setSelectTimesheet(initialTimeSheet);
+      console.log(timeSheets["GetTimeEntries"]);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(timeSheet);
+  console.log({ timeSheet });
+  console.log({ total });
   useEffect(() => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [week]);
   useEffect(() => {
-    if (Object.keys(timeSheet).length) setSelectTimesheet(timeSheet[section]);
+    if (Object.keys(timeSheet).length) {
+      setSelectTimesheet(timeSheet[section]);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
   return (
     <TimeSheetContext.Provider
-      value={{ timeSheet, selectTimesheet, loading, setSection, section }}
+      value={{
+        timeSheet,
+        selectTimesheet,
+        loading,
+        setSection,
+        section,
+        total,
+      }}
     >
       {children}
     </TimeSheetContext.Provider>

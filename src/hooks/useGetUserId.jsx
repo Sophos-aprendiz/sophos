@@ -32,7 +32,6 @@ const useGetUserId = () => {
       };
       if (tokken) {
         const { data } = await axios(config);
-        console.log(data);
         const id = data.data.userId;
         setUserId(id);
         window.localStorage.setItem("userId", id);
