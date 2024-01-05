@@ -1,5 +1,4 @@
 export const getTotal = (section) => {
-  if (!section) return;
   let monday = 0;
   let wednesday = 0;
   let tuesday = 0;
@@ -8,6 +7,17 @@ export const getTotal = (section) => {
   let thursday = 0;
   let friday = 0;
   let total = 0;
+  if (!section || !section.length)
+    return {
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
+      sunday,
+      total,
+    };
   section.forEach((project) => {
     monday += project.monday;
     wednesday += project.wednesday;
@@ -18,7 +28,7 @@ export const getTotal = (section) => {
     friday += project.friday;
     total += project.total;
   });
-  return [
+  return {
     monday,
     tuesday,
     wednesday,
@@ -27,5 +37,5 @@ export const getTotal = (section) => {
     saturday,
     sunday,
     total,
-  ];
+  };
 };

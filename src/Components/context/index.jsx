@@ -42,7 +42,7 @@ export const TimeSheetProvider = ({ children }) => {
           params: {
             UserName: userName,
             Section: section,
-            DataFilter: formatDate(week),
+            DataFilter: "2023-12-25",
           },
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -55,32 +55,58 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
+  let GetTimeEntries = getTotal(timeSheet["GetTimeEntries"]);
+
+  let GetTimeEntriesNC = getTotal(timeSheet["GetTimeEntriesNC"]);
+
+  let GetTimeEntriesReqC = getTotal(timeSheet["GetTimeEntriesReqC"]);
+
+  let GetTimeEntriesReqNC = getTotal(timeSheet["GetTimeEntriesReqNC"]);
+
+  let GetTimeEntriesGsC = getTotal(timeSheet["GetTimeEntriesGsC"]);
+
+  let GetTimeEntriesGsNC = getTotal(timeSheet["GetTimeEntriesGsNC"]);
+
+  let totalHours = getTotal([
+    GetTimeEntries,
+    GetTimeEntriesNC,
+    GetTimeEntriesReqC,
+    GetTimeEntriesReqNC,
+    GetTimeEntriesGsC,
+    GetTimeEntriesGsNC,
+  ]);
+
   let total = [
     {
       name: "TOTAL HORAS - CLIENTE NO CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntries"]),
+      hours: GetTimeEntries,
     },
     {
       name: "TOTAL HORAS - CLIENTE NO CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntriesNC"]),
+      hours: GetTimeEntriesNC,
     },
     {
       name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntriesReqC"]),
+      hours: GetTimeEntriesReqC,
     },
     {
       name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS NO CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntriesReqNC"]),
+      hours: GetTimeEntriesReqNC,
     },
     {
       name: "TOTAL HORAS - SOPHOS NO CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntriesGsC"]),
+      hours: GetTimeEntriesGsC,
     },
     {
       name: "TOTAL HORAS - SOPHOS CARGABLE",
-      hours: getTotal(timeSheet["GetTimeEntriesGsNC"]),
+      hours: GetTimeEntriesGsNC,
+    },
+    {
+      name: "TOTAL HORAS - CONSOLIDADAS",
+      hours: totalHours,
     },
   ];
+  console.log(total);
   const getAllTimeSheets = async () => {
     try {
       const timeSheets = {};
@@ -99,8 +125,7 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
-  console.log({ timeSheet });
-  console.log({ total });
+
   useEffect(() => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -111,6 +136,9 @@ export const TimeSheetProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
+  useEffect(()=>{
+
+  },[timeSheet])
   return (
     <TimeSheetContext.Provider
       value={{
