@@ -11,27 +11,115 @@ export const TimeSheetProvider = ({ children }) => {
   const [week] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
-  const [selectTimesheet, setSelectTimesheet] = useState();
+  const [selectTimesheet, setSelectTimesheet] = useState([]);
+  const [total, setTotal] = useState([
+    {
+      name: "TOTAL HORAS - CLIENTE CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE NO CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS NO CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - SOPHOS CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - SOPHOS NO CARGABLE",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+    {
+      name: "TOTAL HORAS - CONSOLIDADAS",
+      hours: {
+        monday: 0,
+        tuesday: 0,
+        wednesday: 0,
+        thursday: 0,
+        friday: 0,
+        saturday: 0,
+        sunday: 0,
+        total: 0,
+      },
+    },
+  ]);
+
   const options = [
-    {
-      value: "GetTimeEntries",
-    },
-    {
-      value: "GetTimeEntriesNC",
-    },
-    {
-      value: "GetTimeEntriesReqC",
-    },
-    {
-      value: "GetTimeEntriesReqNC",
-    },
-    {
-      value: "GetTimeEntriesGsC",
-    },
-    {
-      value: "GetTimeEntriesGsNC",
-    },
+    "GetTimeEntries",
+
+    "GetTimeEntriesNC",
+
+    "GetTimeEntriesReqC",
+
+    "GetTimeEntriesReqNC",
+
+    "GetTimeEntriesGsC",
+
+    "GetTimeEntriesGsNC",
   ];
+
   const getTimeSheet = async (section) => {
     try {
       const authToken = window.localStorage.getItem("tokken");
@@ -42,7 +130,7 @@ export const TimeSheetProvider = ({ children }) => {
           params: {
             UserName: userName,
             Section: section,
-            DataFilter: "2023-12-25",
+            DataFilter: formatDate(week),
           },
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -55,70 +143,56 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
-  let GetTimeEntries = getTotal(timeSheet["GetTimeEntries"]);
 
-  let GetTimeEntriesNC = getTotal(timeSheet["GetTimeEntriesNC"]);
-
-  let GetTimeEntriesReqC = getTotal(timeSheet["GetTimeEntriesReqC"]);
-
-  let GetTimeEntriesReqNC = getTotal(timeSheet["GetTimeEntriesReqNC"]);
-
-  let GetTimeEntriesGsC = getTotal(timeSheet["GetTimeEntriesGsC"]);
-
-  let GetTimeEntriesGsNC = getTotal(timeSheet["GetTimeEntriesGsNC"]);
-
-  let totalHours = getTotal([
-    GetTimeEntries,
-    GetTimeEntriesNC,
-    GetTimeEntriesReqC,
-    GetTimeEntriesReqNC,
-    GetTimeEntriesGsC,
-    GetTimeEntriesGsNC,
-  ]);
-
-  let total = [
-    {
-      name: "TOTAL HORAS - CLIENTE NO CARGABLE",
-      hours: GetTimeEntries,
-    },
-    {
-      name: "TOTAL HORAS - CLIENTE NO CARGABLE",
-      hours: GetTimeEntriesNC,
-    },
-    {
-      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS CARGABLE",
-      hours: GetTimeEntriesReqC,
-    },
-    {
-      name: "TOTAL HORAS - CLIENTE POR REQUERIMIENTOS NO CARGABLE",
-      hours: GetTimeEntriesReqNC,
-    },
-    {
-      name: "TOTAL HORAS - SOPHOS NO CARGABLE",
-      hours: GetTimeEntriesGsC,
-    },
-    {
-      name: "TOTAL HORAS - SOPHOS CARGABLE",
-      hours: GetTimeEntriesGsNC,
-    },
-    {
-      name: "TOTAL HORAS - CONSOLIDADAS",
-      hours: totalHours,
-    },
-  ];
-  console.log(total);
   const getAllTimeSheets = async () => {
     try {
       const timeSheets = {};
-      const initialTimeSheet = [];
-      await options.forEach(async (option, index) => {
-        let timeSheet = await getTimeSheet(option.value);
-        if (index == 0) setSelectTimesheet(timeSheet.data);
-        timeSheets[option.value] = timeSheet.data;
+      let monday = 0;
+      let wednesday = 0;
+      let tuesday = 0;
+      let sunday = 0;
+      let saturday = 0;
+      let thursday = 0;
+      let friday = 0;
+      let total = 0;
+      for (let index = 0; index < options.length; index++) {
+        let { data } = await getTimeSheet(options[index]);
+        if (index == 0) setSelectTimesheet(data);
+        let calcTotal = getTotal(data);
+        monday += calcTotal.monday;
+        wednesday += calcTotal.wednesday;
+        tuesday += calcTotal.tuesday;
+        sunday += calcTotal.sunday;
+        saturday += calcTotal.saturday;
+        thursday += calcTotal.thursday;
+        friday += calcTotal.friday;
+        total += calcTotal.total;
+        setTotal((state) => {
+          const copyState = [...state];
+          copyState[index].hours = calcTotal;
+          return copyState;
+        });
+
+        timeSheets[options[index]] = data;
+      }
+      console.log({ selectTimesheet });
+
+      let totalHours = {
+        monday,
+        wednesday,
+        tuesday,
+        sunday,
+        saturday,
+        thursday,
+        friday,
+        total,
+      };
+      setTotal((state) => {
+        const copyState = [...state];
+        copyState[6].hours = totalHours;
+        return copyState;
       });
       setTimeSheet(timeSheets);
-      setSelectTimesheet(initialTimeSheet);
-      console.log(timeSheets["GetTimeEntries"]);
 
       setLoading(false);
     } catch (error) {
@@ -136,9 +210,7 @@ export const TimeSheetProvider = ({ children }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
-  useEffect(()=>{
-
-  },[timeSheet])
+  useEffect(() => {}, [timeSheet]);
   return (
     <TimeSheetContext.Provider
       value={{

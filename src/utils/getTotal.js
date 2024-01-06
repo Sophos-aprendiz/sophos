@@ -7,7 +7,7 @@ export const getTotal = (section) => {
   let thursday = 0;
   let friday = 0;
   let total = 0;
-  if (!section || !section.length)
+  if (!section.length)
     return {
       monday,
       tuesday,

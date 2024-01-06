@@ -4,7 +4,6 @@ import { TimeSheetContext } from "../context";
 
 const Total = () => {
   const { total } = useContext(TimeSheetContext);
-
   return (
     <div className="container-total">
       {total.map((section, index) => (
