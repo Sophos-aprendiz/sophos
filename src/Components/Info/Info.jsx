@@ -1,5 +1,6 @@
 import './Info.css'
 import {useState} from 'react'
+import ProjectSelector from './ProjectSelector';
 const Info = () => {
   const [dias, setDias] = useState({
     lunes: '',
@@ -32,8 +33,12 @@ const Info = () => {
     <div className='container-info'>
       <div className='container-one'>
         <select className='select'></select>
-        <select className='select'></select>
-        <select className='select'></select>
+        <select className='select'>
+        </select>
+        <ProjectSelector />
+        <select className='select'>
+          
+        </select>
         <select className='select'></select>
         </div>
       <div className='container-two'>
