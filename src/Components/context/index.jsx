@@ -8,6 +8,9 @@ export const TimeSheetContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const TimeSheetProvider = ({ children }) => {
   const [section, setSection] = useState("GetTimeEntries");
+  const [proyecto, setProyecto] = useState("GetProjectsByUser"); // Estado inicial
+  const [listaProyectos, setListaProyectos] = useState([]);
+
   const [week] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
@@ -130,7 +133,7 @@ export const TimeSheetProvider = ({ children }) => {
           params: {
             UserName: userName,
             Section: section,
-            DataFilter: formatDate(week),
+            DataFilter: "2023-12-25",
           },
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -175,7 +178,7 @@ export const TimeSheetProvider = ({ children }) => {
 
         timeSheets[options[index]] = data;
       }
-      console.log({ selectTimesheet });
+      
 
       let totalHours = {
         monday,
@@ -199,6 +202,32 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
+  useEffect(()=>{
+    switch (section) {
+      case 'GetTimeEntriesNC':
+        setProyecto('GetProjectsNC');
+        break;
+      case 'GetTimeEntriesReqC':
+        setProyecto('GetProjectsReqC');
+        break;
+      case 'GetTimeEntriesReqNC':
+        setProyecto('GetProjectsReqNC');
+        break;
+      case 'GetTimeEntriesGsC':
+        setProyecto('GetAllProjectsC');
+        break;
+      case 'GetTimeEntriesGsNC':
+        setProyecto('GetAllProjectsNC');
+        break;
+      default:
+        setProyecto('GetProjectsByUser');
+        break;
+    }
+  },[section]
+  
+  )
+  
+
 
   useEffect(() => {
     if (week) getAllTimeSheets();
@@ -220,6 +249,11 @@ export const TimeSheetProvider = ({ children }) => {
         setSection,
         section,
         total,
+        proyecto,
+        setProyecto,
+        listaProyectos, 
+        setListaProyectos, 
+       
       }}
     >
       {children}
