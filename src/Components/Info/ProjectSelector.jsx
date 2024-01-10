@@ -1,46 +1,52 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useContext, useEffect } from "react";
+import { TimeSheetContext } from "../context/index";
+
+
+
 
 const ProjectSelector = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const { proyecto,setProyecto, setListaProyectos, listaProyectos } = useContext(TimeSheetContext);
+  
+  const getProyectos = async () => {
+    try {
+      const authToken = window.localStorage.getItem("tokken");
+      const userName = window.localStorage.getItem("user");
+      const { data } = await axios.get(
+        "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/Section1-getProjectsByUserAndSection",
+        {
+          params: {
 
+            UserName: userName,
+            Section: proyecto, // Usar la sección correspondiente al proyecto seleccionado
+          },
+          headers: {
+            Authorization: `Bearer ${authToken}`,
+          },
+        }
+      );
+
+      
+      
+      setListaProyectos(data?.data ?? []);
+  
+      
+    } catch (error) {
+      console.error("Error al obtener proyectos:", error);
+    }
+
+  }
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const tokken = window.localStorage.getItem("tokken");
-        const userName = window.localStorage.getItem("user");
+    getProyectos()
+    
+  }, [proyecto]);
 
-        const response = await axios.get(
-          `https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/Section1-getProjectsByUserAndSection?UserName=${userName}&section=GetProjectsByUser`,
-          {
-            params: {
-              userName: userName,
-              section: "GetProjectsByUser" 
-            },
-            headers: {
-              Authorization: `Bearer ${tokken}`,
-            },
-          }
-        );
-
-        setProjects(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
-
-  if (loading) return <h1>Loading...</h1>;
+  
 
   return (
-    <select className='select'>
-      <option value="">Select a Project</option>
-      {projects.map((project) => (
+    <select className='select' onChange={(e) => handleProyectoChange(e.target.value)}>
+     <option value="">Select a Project</option>
+      {listaProyectos.map((project) => (
         <option key={project.projectId} value={project.projectId}>
           {project.projectName}
         </option>
@@ -48,5 +54,4 @@ const ProjectSelector = () => {
     </select>
   );
 };
-
 export default ProjectSelector;

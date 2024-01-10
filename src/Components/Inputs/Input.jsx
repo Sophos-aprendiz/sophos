@@ -1,40 +1,55 @@
 /* eslint-disable react/prop-types */
 import './Input.css'
 
+import React, { useContext } from 'react';
+import { TimeSheetContext } from '../context/index'; 
 
-const Input = ({handleOnChange}) => {
+const Input = ( { handleOnChange }) => {
+  
+  
+  
   const options = [
     {
       name:'Horas cargables al cliente',
-      value:"GetTimeEntries"
+      value:"GetTimeEntries",
+      
     }
     ,
     {
       name:'Horas no cargables al cliente',
-      value:"GetTimeEntriesNC"
+      value:"GetTimeEntriesNC",
+     
     }
     ,
     {
       name:'Horas por requerimiento cargables al cliente',
-      value:"GetTimeEntriesReqC"
+      value:"GetTimeEntriesReqC",
+      
     }
     ,
     {
       name:'Horas por requerimiento no cargables al cliente',
-      value:"GetTimeEntriesReqNC"
+      value:"GetTimeEntriesReqNC",
+      
     }
     ,
     {
       name:'General Sophos Cargable',
-      value:'GetTimeEntriesGsC'
+      value:'GetTimeEntriesGsC',
+      
     }
     ,
     {
       name:'General Sophos No Cargable',
-      value:'GetTimeEntriesGsNC'
+      value:'GetTimeEntriesGsNC',
+      
     }
     
   ];
+
+ 
+
+ 
 
   return (
     <div className="contenedor">
