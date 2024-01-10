@@ -133,7 +133,7 @@ export const TimeSheetProvider = ({ children }) => {
           params: {
             UserName: userName,
             Section: section,
-            DataFilter: "2023-12-25",
+            DataFilter: formatDate(week),
           },
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -178,7 +178,6 @@ export const TimeSheetProvider = ({ children }) => {
 
         timeSheets[options[index]] = data;
       }
-      
 
       let totalHours = {
         monday,
@@ -202,32 +201,28 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     switch (section) {
-      case 'GetTimeEntriesNC':
-        setProyecto('GetProjectsNC');
+      case "GetTimeEntriesNC":
+        setProyecto("GetProjectsNC");
         break;
-      case 'GetTimeEntriesReqC':
-        setProyecto('GetProjectsReqC');
+      case "GetTimeEntriesReqC":
+        setProyecto("GetProjectsReqC");
         break;
-      case 'GetTimeEntriesReqNC':
-        setProyecto('GetProjectsReqNC');
+      case "GetTimeEntriesReqNC":
+        setProyecto("GetProjectsReqNC");
         break;
-      case 'GetTimeEntriesGsC':
-        setProyecto('GetAllProjectsC');
+      case "GetTimeEntriesGsC":
+        setProyecto("GetAllProjectsC");
         break;
-      case 'GetTimeEntriesGsNC':
-        setProyecto('GetAllProjectsNC');
+      case "GetTimeEntriesGsNC":
+        setProyecto("GetAllProjectsNC");
         break;
       default:
-        setProyecto('GetProjectsByUser');
+        setProyecto("GetProjectsByUser");
         break;
     }
-  },[section]
-  
-  )
-  
-
+  }, [section]);
 
   useEffect(() => {
     if (week) getAllTimeSheets();
@@ -251,9 +246,8 @@ export const TimeSheetProvider = ({ children }) => {
         total,
         proyecto,
         setProyecto,
-        listaProyectos, 
-        setListaProyectos, 
-       
+        listaProyectos,
+        setListaProyectos,
       }}
     >
       {children}
