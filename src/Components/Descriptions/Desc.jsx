@@ -4,6 +4,8 @@ const Desc = () => {
   return (
     <div className='container'>
         <div className='container-client'>
+            <p>Nombre Area</p>
+            <p>|</p>
             <p>Nombre Cliente</p>
             <p>|</p>
             <p>Codigo Proyecto</p>

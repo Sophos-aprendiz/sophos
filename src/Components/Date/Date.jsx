@@ -68,7 +68,7 @@ const Date = () => {
       }
  
       <label htmlFor=""><strong>Semana de inicio lunes: </strong></label>
-      <input type="date" />
+      <input className='user' type="date" />
       <button className='week button'>Semana Anterior</button>
       <button className='week button'>Semana Proxima</button>
       <button className='button'>Filtrar</button>

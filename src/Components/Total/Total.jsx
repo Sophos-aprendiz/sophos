@@ -1,116 +1,30 @@
-import './Total.css'
+import { useContext } from "react";
+import "./Total.css";
+import { TimeSheetContext } from "../context";
 
 const Total = () => {
+  const { total } = useContext(TimeSheetContext);
   return (
-    <div className='container-total'>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - CLIENTE CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
+    <div className="container-total">
+      {total.map((section, index) => (
+        <div key={index} className="row">
+          <div>{section.name}</div>
+          <div className="container-hours">
+            <div>{section.hours.monday}</div>
+            <div>{section.hours.tuesday}</div>
+            <div>{section.hours.wednesday}</div>
+            <div>{section.hours.thursday}</div>
+            <div>{section.hours.friday}</div>
+            <div>{section.hours.saturday}</div>
+            <div>{section.hours.sunday}</div>
+            <strong>
+              <div>{section.hours.total}</div>
+            </strong>
+          </div>
         </div>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - CLIENTE NO CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - CLIENTE POR REQUERIMIENTOS CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - CLIENTE POR REQUERIMIENTOS NO CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - SOPHOS NO CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        <div className='row'>
-            <div>
-                TOTAL HORAS - SOPHOS CARGABLE                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        <div className='row Total'>
-            <div>
-                TOTAL HORAS - CONSOLIDADAS                
-            </div>
-            <div className='container-hours'>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <div>0</div>
-                <strong><div>0</div></strong>
-            </div>
-        </div>
-        
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Total
+export default Total;
