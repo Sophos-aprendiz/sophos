@@ -58,7 +58,7 @@ const Info = () => {
       console.error("Error al insertar:", error);
     }
   };
-
+  
   // Renderizado del componente
   return (
     <div className="container-info">
@@ -154,7 +154,8 @@ const Info = () => {
         onClick={() => handleInsert(dias, descrption)}
       >
         Insertar
-      </button>
+      </button> 
+     
     </div>
   );
 };

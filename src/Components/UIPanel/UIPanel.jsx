@@ -37,7 +37,6 @@
           <Input handleOnChange={handleOnChange} />
           <Desc />
           <Info />
-          
         </div>
       );
   };
