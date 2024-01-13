@@ -5,6 +5,7 @@ import useGetUserId from "../../hooks/useGetUserId.jsx";
 import NotAuthorized from "../../Components/NotAuthorized/NotAuthorized.jsx";
 import { TimeSheetProvider } from "../../Components/context/index.jsx";
 import UpdateTimeEntry from "../../hooks/UpdateTimeEntry.jsx";
+import DeleteTimeEntry from "../../hooks/DeleteTimeEntry.jsx";
 
 const Panel = () => {
   const { loading, accounts } = useGetUserId();
@@ -17,6 +18,7 @@ const Panel = () => {
       <TimeSheetProvider>
         <UIPanel />
         <UpdateTimeEntry/>
+        <DeleteTimeEntry/>
       </TimeSheetProvider>
     );
   }

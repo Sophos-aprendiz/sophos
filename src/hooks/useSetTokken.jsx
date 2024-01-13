@@ -22,7 +22,6 @@ var config = {
 const setToken=async()=>{
   try {
     if(accounts.length>0){
-
       const {data}=await axios(config)
       window.localStorage.setItem("tokken",data.token)
       setTokken(data.token)
@@ -31,9 +30,6 @@ const setToken=async()=>{
   } catch (error) {
     console.log(error)
   }
-
-
-    
 }
 useEffect(()=>{
   setToken()
