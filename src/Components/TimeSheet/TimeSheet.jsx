@@ -3,6 +3,9 @@
 import { useContext } from "react";
 import TimeSheetItem from "../TimeSheetItem/TimeSheetItem";
 import { TimeSheetContext } from "../context";
+import { IconEdit } from "@tabler/icons-react"
+import { IconX } from "@tabler/icons-react";
+import "./TimeSheet.css"
 import Spinner from "../Spinner/Spinner";
 
 export const TimeSheet = () => {
@@ -15,6 +18,7 @@ export const TimeSheet = () => {
       ) : (
         selectTimesheet?.map((time, index) => {
           return (
+            <div>
             <TimeSheetItem
               areaName={time.areaName}
               clientName={time.clientName}
@@ -30,7 +34,11 @@ export const TimeSheet = () => {
               sunday={time.sunday}
               total={time.total}
               key={index}
+
             />
+            <IconEdit size={12} color="purple"/>
+            <IconX size={12} color="purple"/>
+            </div>
           );
         })
       )}

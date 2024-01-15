@@ -21,6 +21,7 @@ const TimeSheetItem = ({areaName,clientName,projectName,categoryName,projectDesc
         <div className="day">{saturday}</div>
         <div className="day">{sunday}</div>
         <div className="day">{total}</div>
+        {/* <div className="edit"> <IconEdit/> </div> */}
       </div>
     </div>
   )

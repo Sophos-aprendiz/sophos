@@ -74,7 +74,7 @@ const Info = () => {
           value={descrption}
           onChange={handleDescription}
           className="input-description"
-          type="text"
+          type="textarea"
         />
       </div>
       <div className="container-thre">

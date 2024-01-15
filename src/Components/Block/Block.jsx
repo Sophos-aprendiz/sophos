@@ -1,11 +1,28 @@
 import './Block.css'
+import Desc from "../Descriptions/Desc";
+import Info from '../Info/Info';
 import Total from '../Total/Total'
+import Input from '../Inputs/Input';
+import { TimeSheet } from '../TimeSheet/TimeSheet'
+const handleOnChange = (event) => {
+  const value = event.target.value;
+  setSection(value);
+  
+};
+
 
 const Block = () => {
   return (
     <div className='div-block'>
         <div className='block'>
-
+          <div className='block-one'>
+            <Input handleOnChange={handleOnChange} />
+            <Desc/>
+            <Info/>
+          </div>
+          <div className='block-two'>
+            <TimeSheet/>
+          </div>
         </div>
         <div className='blockTwo'>
        
