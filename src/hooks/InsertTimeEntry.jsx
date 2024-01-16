@@ -32,7 +32,7 @@ const useInsertTimeEntry = () => {
     getToken();
   }, []); // Llamada solo al montar el componente
 
-  const postInsert = async (dias, description) => {
+  const postInsert = async (dias, description, idCategory) => {
     try {
       if (!token) {
         console.error("Token no disponible. La inserción no se realizará.");
@@ -48,7 +48,7 @@ const useInsertTimeEntry = () => {
       };
 
       const body = {
-        categoryId: 805159,
+        categoryId: idCategory,
         timeEntryCreatorUserName: userName,
         timeEntryDescription: description,
         timeEntryEstimateDuration: 0,
