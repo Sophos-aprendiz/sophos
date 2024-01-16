@@ -38,7 +38,7 @@ const TimeSheetItem = ({
         <div className="day">{total}</div>
         {/* <div className="edit"> <IconEdit/> </div> */}
       </div>
-      <div className="container buttons"></div>
+
       <IconEdit size={16} color="purple" />
       <IconX size={16} color="purple" />
     </div>
