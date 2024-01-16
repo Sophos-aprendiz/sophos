@@ -1,28 +1,26 @@
 .timeSheetItem {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  width: 101%;
-  height: 30px;
-  font-size: 12px;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  grid-template-rows: 50px auto;
+  max-width: 1500px;
+  font-size: 13px;
 }
-.containerOne {
-  display: flex;
+/* .containerOne {
+  display: grid;
   width: 60%;
   justify-content: space-evenly;
   position: relative;
   left: -3%;
 }
 .containerTwo {
-  display: flex;
+  display: grid;
   width: 20%;
   justify-content: center;
   position: relative;
   left: -3%;
 }
 .containerThree {
-  display: flex;
+  display: grid;
   width: 60%;
   justify-content: space-evenly;
   position: relative;
@@ -30,4 +28,4 @@
 }
 .day {
   margin-left: 13%;
-}
+} */

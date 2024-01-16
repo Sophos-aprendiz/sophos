@@ -18,16 +18,11 @@ const TimeSheetItem = ({
 }) => {
   return (
     <div className="timeSheetItem">
-      <div className="containerOne">
         <div>{areaName}</div>
         <div>{clientName}</div>
         <div>{projectName}</div>
         <div>{categoryName}</div>
-      </div>
-      <div className="containerTwo">
         <div>{projectDescription}</div>
-      </div>
-      <div className="containerThree">
         <div className="day">{monday}</div>
         <div className="day">{tuesday}</div>
         <div className="day">{wednesday}</div>
@@ -36,9 +31,6 @@ const TimeSheetItem = ({
         <div className="day">{saturday}</div>
         <div className="day">{sunday}</div>
         <div className="day">{total}</div>
-        {/* <div className="edit"> <IconEdit/> </div> */}
-      </div>
-
       <IconEdit size={16} color="purple" />
       <IconX size={16} color="purple" />
     </div>
