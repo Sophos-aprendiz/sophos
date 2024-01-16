@@ -5,6 +5,7 @@ import UserName from './UserName';
 import Aprobador from './Aprobador';
 import EstadoSemana from './EstadoSemana';
 import Spinner from '../Spinner/Spinner';
+import Date from "../Date/Date";
 import useGetFirstWeek from '../../hooks/useGetFirstWeek';
 
 
@@ -37,6 +38,8 @@ const [week,loading]=useGetFirstWeek()
             <strong><p>Pais</p></strong>
             <div className='api'>Colombia</div>
         </div>
+        
+        <Date/>
         <div className='line-box'></div>
         
     </div>

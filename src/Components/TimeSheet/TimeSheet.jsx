@@ -3,6 +3,7 @@
 import { useContext } from "react";
 import TimeSheetItem from "../TimeSheetItem/TimeSheetItem";
 import { TimeSheetContext } from "../context";
+import "./TimeSheet.css";
 import Spinner from "../Spinner/Spinner";
 
 export const TimeSheet = () => {

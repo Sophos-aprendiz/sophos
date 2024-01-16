@@ -8,9 +8,11 @@ export const TimeSheetContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const TimeSheetProvider = ({ children }) => {
   const [section, setSection] = useState("GetTimeEntries");
+  const [category, setCategory] = useState("GetProjectCategoryC");
   const [proyecto, setProyecto] = useState("GetProjectsByUser"); // Estado inicial
   const [listaProyectos, setListaProyectos] = useState([]);
-
+  const [proyectId, setProyectId] = useState("");
+  const [categoryId, setCategoryId] = useState("");
   const [week] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
@@ -206,21 +208,32 @@ export const TimeSheetProvider = ({ children }) => {
     switch (section) {
       case "GetTimeEntriesNC":
         setProyecto("GetProjectsNC");
+        setCategory("GetProjectCategoryNC");
+
         break;
       case "GetTimeEntriesReqC":
         setProyecto("GetProjectsReqC");
+        setCategory("GetProjectCategoryReqC");
+
         break;
       case "GetTimeEntriesReqNC":
         setProyecto("GetProjectsReqNC");
+        setCategory("GetProjectCategoryReqNC");
+
         break;
       case "GetTimeEntriesGsC":
         setProyecto("GetAllProjectsC");
+        setCategory("GetProjectCategoryGsC");
+
         break;
       case "GetTimeEntriesGsNC":
         setProyecto("GetAllProjectsNC");
+        setCategory("GetProjectCategoryGsNC");
+
         break;
       default:
         setProyecto("GetProjectsByUser");
+        setCategory("GetProjectCategoryC");
         break;
     }
   }, [section]);
@@ -249,6 +262,11 @@ export const TimeSheetProvider = ({ children }) => {
         listaProyectos,
         setListaProyectos,
         setUpdtaTimeSheet,
+        proyectId,
+        setProyectId,
+        categoryId,
+        setCategoryId,
+        category,
       }}
     >
       {children}

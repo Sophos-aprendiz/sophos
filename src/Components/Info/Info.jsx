@@ -1,8 +1,10 @@
 // Importar las librerías necesarias
 import "./Info.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ProjectSelector from "./ProjectSelector";
 import useInsertTimeEntry from "../../hooks/InsertTimeEntry.jsx"; // Ajusta la ruta del import si es necesario
+import CategorySelector from "../CategorySelector/CategorySelector.jsx";
+import { TimeSheetContext } from "../context/index.jsx";
 
 // Componente Info
 const Info = () => {
@@ -48,14 +50,16 @@ const Info = () => {
 
   // Obtiene el objeto { insert, loading } del hook
   const { postInsert } = useInsertTimeEntry();
-
+  const { categoryId } = useContext(TimeSheetContext);
   // Función para manejar la inserción
   const handleInsert = async () => {
-    try {
-      await postInsert(dias);
-      console.log("Inserción exitosa");
-    } catch (error) {
-      console.error("Error al insertar:", error);
+    if (categoryId) {
+      try {
+        await postInsert(dias, descrption, categoryId);
+        console.log("Inserción exitosa");
+      } catch (error) {
+        console.error("Error al insertar:", error);
+      }
     }
   };
   
@@ -67,14 +71,14 @@ const Info = () => {
 
         <select className="select"></select>
         <ProjectSelector />
-        <select className="select"></select>
+        <CategorySelector />
       </div>
       <div className="container-two">
         <input
           value={descrption}
           onChange={handleDescription}
           className="input-description"
-          type="text"
+          type="textarea"
         />
       </div>
       <div className="container-thre">
@@ -149,10 +153,7 @@ const Info = () => {
           readOnly
         />
       </div>
-      <button
-        className="button-insert"
-        onClick={() => handleInsert(dias, descrption)}
-      >
+      <button className="button-insert" onClick={() => handleInsert()}>
         Insertar
       </button> 
      

@@ -11,13 +11,14 @@ const Desc = () => {
             <p>Codigo Proyecto</p>
             <p>|</p>
             <p>Nombre Categoria</p>
-            <p>|</p>
+            <p></p>
         </div>
         <div className='container-desc'>
+            <p>|</p>
             <p>Descripcion</p> 
+            <p>|</p>
         </div>
         <div className='container-days'>
-            <p>|</p>
             <p>Lunes</p>
             <p>|</p>
             <p>Martes</p>

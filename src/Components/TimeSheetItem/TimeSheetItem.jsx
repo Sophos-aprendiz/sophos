@@ -1,18 +1,28 @@
 /* eslint-disable react/prop-types */
-import "./TimeSheetItem.css"
-const TimeSheetItem = ({areaName,clientName,projectName,categoryName,projectDescription,monday,tuesday,wednesday,thursday,friday,saturday,sunday,total}) => {
+import { IconEdit, IconX } from "@tabler/icons-react";
+import "./TimeSheetItem.css";
+const TimeSheetItem = ({
+  areaName,
+  clientName,
+  projectName,
+  categoryName,
+  projectDescription,
+  monday,
+  tuesday,
+  wednesday,
+  thursday,
+  friday,
+  saturday,
+  sunday,
+  total,
+}) => {
   return (
     <div className="timeSheetItem">
-      <div className="containerOne">
         <div>{areaName}</div>
         <div>{clientName}</div>
         <div>{projectName}</div>
         <div>{categoryName}</div>
-      </div>
-      <div className="containerTwo">
         <div>{projectDescription}</div>
-      </div>
-      <div className="containerThree">
         <div className="day">{monday}</div>
         <div className="day">{tuesday}</div>
         <div className="day">{wednesday}</div>
@@ -21,9 +31,10 @@ const TimeSheetItem = ({areaName,clientName,projectName,categoryName,projectDesc
         <div className="day">{saturday}</div>
         <div className="day">{sunday}</div>
         <div className="day">{total}</div>
-      </div>
+      <IconEdit size={16} color="purple" />
+      <IconX size={16} color="purple" />
     </div>
-  )
-}
+  );
+};
 
-export default TimeSheetItem
+export default TimeSheetItem;

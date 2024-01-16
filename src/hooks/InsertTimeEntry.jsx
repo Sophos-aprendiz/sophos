@@ -32,7 +32,7 @@ const useInsertTimeEntry = () => {
   //   getToken();
   // }, []); // Llamada solo al montar el componente
 
-  const postInsert = async (dias, description) => {
+  const postInsert = async (dias, description, idCategory) => {
     try {
       if (!authToken) {
         console.error("Token no disponible. La inserción no se realizará.");
@@ -46,7 +46,7 @@ const useInsertTimeEntry = () => {
         Authorization: `Bearer ${authToken}`,
       };
       const body = {
-        categoryId: 805159,
+        categoryId: idCategory,
         timeEntryCreatorUserName: userName,
         timeEntryDescription: description,
         timeEntryEstimateDuration: 0,
