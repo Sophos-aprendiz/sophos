@@ -1,8 +1,8 @@
-/* eslint-disable react/prop-types */
+// TimeSheetItem.jsx
+import React, { useState } from "react";
 import { IconEdit, IconX } from "@tabler/icons-react";
 import "./TimeSheetItem.css";
-import { useState } from "react";
-import DeleteTimeEntry from "..//..//hooks/DeleteTimeEntry";
+import DeleteTimeEntry from "../../hooks/DeleteTimeEntry";
 
 const TimeSheetItem = ({
   areaName,
@@ -18,6 +18,7 @@ const TimeSheetItem = ({
   saturday,
   sunday,
   total,
+  timeEntryId,
 }) => {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -53,7 +54,8 @@ const TimeSheetItem = ({
 
       {isDeleteModalOpen && (
         <div className="delete-modal">
-          <DeleteTimeEntry onClose={handleCloseModal} />
+          {/* Pasa correctamente el timeEntryId al componente DeleteTimeEntry */}
+          <DeleteTimeEntry timeEntryId={timeEntryId} onClose={handleCloseModal} />
         </div>
       )}
     </div>

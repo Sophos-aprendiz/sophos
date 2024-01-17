@@ -17,6 +17,7 @@ export const TimeSheet = () => {
         selectTimesheet?.map((time, index) => {
           return (
             <TimeSheetItem
+              timeEntryId={time.timeEntryId}
               areaName={time.areaName}
               clientName={time.clientName}
               projectName={time.projectName}

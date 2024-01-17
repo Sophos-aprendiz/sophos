@@ -1,4 +1,4 @@
-// InsertTimeEntry.jsx
+// useInsertTimeEntry.jsx
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import useGetFirstWeek from "./useGetFirstWeek";
@@ -6,13 +6,20 @@ import { formatDate } from "../utils/formatDate";
 import { TimeSheetContext } from "../Components/context";
 
 const useInsertTimeEntry = () => {
-  const [idTable, setIdTable] = useState(null);
-  const [userName, setUserName] = useState(null); // Nuevo estado para almacenar userName
+  const [insert, setInsert] = useState("");
+  const [userName, setUserName] = useState(""); // Agrega el estado para userName
   const [loading, setLoading] = useState(true);
   const [week] = useGetFirstWeek();
   const authToken = window.localStorage.getItem("tokken");
+  const { setUpdtaTimeSheet } = useContext(TimeSheetContext);
 
-  const postInsert = async (dias, description) => {
+  useEffect(() => {
+    // Obtiene el userName al cargar el componente
+    const storedUserName = window.localStorage.getItem("user");
+    setUserName(storedUserName);
+  }, []);
+
+  const postInsert = async (dias, description, idCategory) => {
     try {
       if (!authToken) {
         console.error("Token no disponible. La inserción no se realizará.");
@@ -45,9 +52,8 @@ const useInsertTimeEntry = () => {
         whodidit: userName,
       };
       const response = await axios.post(urlInsert, body, { headers });
-      console.log("Respuesta de la inserción:", response.data);
-      setIdTable(response.data.data.idTable);
-      setUserName(userName); // Almacena el userName en el estado
+      setInsert(response.data);
+      setUpdtaTimeSheet((state) => ++state);
     } catch (error) {
       console.error("Error al insertar:", error);
     } finally {
@@ -55,7 +61,7 @@ const useInsertTimeEntry = () => {
     }
   };
 
-  return { idTable, userName, loading, postInsert };
+  return { insert, userName, loading, postInsert }; // Añade userName al retorno del hook
 };
 
 export default useInsertTimeEntry;
