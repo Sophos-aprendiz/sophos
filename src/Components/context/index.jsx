@@ -11,7 +11,8 @@ export const TimeSheetProvider = ({ children }) => {
   const [proyecto, setProyecto] = useState("GetProjectsByUser"); // Estado inicial
   const [listaProyectos, setListaProyectos] = useState([]);
 
-  const [week] = useGetFirstWeek();
+  const [week, loadinng, updateWeek, updateWeeksemana] = useGetFirstWeek();
+  
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
@@ -253,7 +254,8 @@ export const TimeSheetProvider = ({ children }) => {
         setProyecto,
         listaProyectos, 
         setListaProyectos, 
-       
+        updateWeek,
+        updateWeeksemana
       }}
     >
       {children}

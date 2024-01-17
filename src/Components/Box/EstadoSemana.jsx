@@ -7,7 +7,7 @@ import { formatDate } from "../../utils/formatDate";
 
 const EstadoSemana = () => {
     const [estadoSemana, setEstadoSemana] = useState({});
-    const [week,loading]=useGetFirstWeek()
+    const [week,loading, updateWeek]=useGetFirstWeek()
 
     const fetchData = async () => {
       try {
@@ -37,11 +37,10 @@ const EstadoSemana = () => {
     };
   useEffect(() => {
     if(week)fetchData()
-    
   }, [loading]);
 
- 
-
+console.log({week})
+console.log(estadoSemana)
   return (
     <div>
     {
