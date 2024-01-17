@@ -13,12 +13,13 @@ export const TimeSheetProvider = ({ children }) => {
   const [listaProyectos, setListaProyectos] = useState([]);
   const [proyectId, setProyectId] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [week, loadinng, updateWeek, ] = useGetFirstWeek();
+  const [week, loadinng, updateWeek] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
   const [updateTimeSheet, setUpdtaTimeSheet] = useState(0);
   console.log(updateTimeSheet);
+
   const [total, setTotal] = useState([
     {
       name: "TOTAL HORAS - CLIENTE CARGABLE",
@@ -149,6 +150,8 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
+  
+  
 
   const getAllTimeSheets = async () => {
     try {
@@ -238,6 +241,8 @@ export const TimeSheetProvider = ({ children }) => {
     }
   }, [section]);
 
+  
+
   useEffect(() => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -267,7 +272,9 @@ export const TimeSheetProvider = ({ children }) => {
         categoryId,
         setCategoryId,
         category,
-        updateWeek
+        updateWeek,
+        loadinng,
+        week
       }}
     >
       {children}
