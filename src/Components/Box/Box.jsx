@@ -6,6 +6,7 @@ import UserName from './UserName';
 import Aprobador from './Aprobador';
 import EstadoSemana from './EstadoSemana';
 import Spinner from '../Spinner/Spinner';
+import Date from "../Date/Date";
 import useGetFirstWeek from '../../hooks/useGetFirstWeek';
 
 const Box = ({ week,loading}) => {

@@ -1,29 +1,18 @@
 .container{
-    width: 95%;
-    position: absolute;
-    top: 72%;
-    left: 2.5%;
+    width: 100%;
     display: flex;
-    justify-content: space-evenly;
-    
+    position: absolute;
+    top: 30%;
+    left: 1%;
 }
 .container-client{
-    display: flex;
-    width: 45%;
-    left: -2%;
+   display: flex;
+   margin-left: 5px;
 }
 .container-desc{
     display: flex;
-    width: 0%;
-    position: relative;
-    left: -6%;
+    width: 150px;
 }
 .container-days{
-    display: flex;
-    display: 30%;
-    position: relative;
-    left: -0.8%;
-}
-p{
-    font-size: 2px;
+   display: flex;
 }

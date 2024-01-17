@@ -1,0 +1,5 @@
+.timesheet-container{
+    height: 200px;
+    overflow: scroll;
+    scrollbar-width: none;
+}

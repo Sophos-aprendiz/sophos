@@ -8,6 +8,7 @@ export const TimeSheetContext = createContext();
 // eslint-disable-next-line react/prop-types
 export const TimeSheetProvider = ({ children }) => {
   const [section, setSection] = useState("GetTimeEntries");
+  const [category, setCategory] = useState("GetProjectCategoryC");
   const [proyecto, setProyecto] = useState("GetProjectsByUser"); // Estado inicial
   const [listaProyectos, setListaProyectos] = useState([]);
 
@@ -16,6 +17,8 @@ export const TimeSheetProvider = ({ children }) => {
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
+  const [updateTimeSheet, setUpdtaTimeSheet] = useState(0);
+  console.log(updateTimeSheet);
   const [total, setTotal] = useState([
     {
       name: "TOTAL HORAS - CLIENTE CARGABLE",
@@ -109,7 +112,6 @@ export const TimeSheetProvider = ({ children }) => {
       },
     },
   ]);
-
   const options = [
     "GetTimeEntries",
 
@@ -134,7 +136,7 @@ export const TimeSheetProvider = ({ children }) => {
           params: {
             UserName: userName,
             Section: section,
-            DataFilter: "2023-12-25",
+            DataFilter: formatDate(week),
           },
           headers: {
             Authorization: `Bearer ${authToken}`,
@@ -179,7 +181,6 @@ export const TimeSheetProvider = ({ children }) => {
 
         timeSheets[options[index]] = data;
       }
-      
 
       let totalHours = {
         monday,
@@ -203,44 +204,50 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     switch (section) {
-      case 'GetTimeEntriesNC':
-        setProyecto('GetProjectsNC');
+      case "GetTimeEntriesNC":
+        setProyecto("GetProjectsNC");
+        setCategory("GetProjectCategoryNC");
+
         break;
-      case 'GetTimeEntriesReqC':
-        setProyecto('GetProjectsReqC');
+      case "GetTimeEntriesReqC":
+        setProyecto("GetProjectsReqC");
+        setCategory("GetProjectCategoryReqC");
+
         break;
-      case 'GetTimeEntriesReqNC':
-        setProyecto('GetProjectsReqNC');
+      case "GetTimeEntriesReqNC":
+        setProyecto("GetProjectsReqNC");
+        setCategory("GetProjectCategoryReqNC");
+
         break;
-      case 'GetTimeEntriesGsC':
-        setProyecto('GetAllProjectsC');
+      case "GetTimeEntriesGsC":
+        setProyecto("GetAllProjectsC");
+        setCategory("GetProjectCategoryGsC");
+
         break;
-      case 'GetTimeEntriesGsNC':
-        setProyecto('GetAllProjectsNC');
+      case "GetTimeEntriesGsNC":
+        setProyecto("GetAllProjectsNC");
+        setCategory("GetProjectCategoryGsNC");
+
         break;
       default:
-        setProyecto('GetProjectsByUser');
+        setProyecto("GetProjectsByUser");
+        setCategory("GetProjectCategoryC");
         break;
     }
-  },[section]
-  
-  )
-  
-
+  }, [section]);
 
   useEffect(() => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [week]);
+  }, [week, updateTimeSheet]);
   useEffect(() => {
     if (Object.keys(timeSheet).length) {
       setSelectTimesheet(timeSheet[section]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section]);
-  useEffect(() => {}, [timeSheet]);
   return (
     <TimeSheetContext.Provider
       value={{
