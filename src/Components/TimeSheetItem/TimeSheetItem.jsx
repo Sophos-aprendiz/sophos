@@ -2,9 +2,12 @@
 import { IconCheck, IconEdit, IconX } from "@tabler/icons-react";
 import "./TimeSheetItem.css";
 import { useState } from "react";
+import { useUpdateTimeEntry } from "../../hooks/useUpdateTimeEntry";
+import toast from "react-hot-toast";
 const TimeSheetItem = ({
   areaName,
   clientName,
+  categoryId,
   projectName,
   categoryName,
   projectDescription,
@@ -18,6 +21,7 @@ const TimeSheetItem = ({
   total,
   timeEntryId,
 }) => {
+  const { updateInsert } = useUpdateTimeEntry();
   const [edit, setEdit] = useState(false);
   const initialState = {
     lunes: monday,
@@ -30,7 +34,16 @@ const TimeSheetItem = ({
   };
   // Estado para los días
   const [dias, setDias] = useState(initialState);
-  const handleEdit = () => setEdit(!edit);
+  const handleEdit = () => setEdit(true);
+  const handleCheck = async () => {
+    try {
+      await updateInsert(dias, projectDescription, categoryId, timeEntryId);
+      setEdit(false);
+      toast.success("Actualizado");
+    } catch (error) {
+      console.error(error);
+    }
+  };
   // Función para manejar cambios en el input
   const handleChange = (dia, value) => {
     // Verificar que el valor sea un número válido
@@ -152,7 +165,7 @@ const TimeSheetItem = ({
       {edit ? (
         <IconCheck
           className="icons"
-          onClick={handleEdit}
+          onClick={handleCheck}
           size={16}
           color="green"
         />
