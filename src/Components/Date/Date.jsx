@@ -3,11 +3,13 @@ import './Date.css'
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Spinner from '../Spinner/Spinner';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';  
 
-const Date = () => {
+const Date = ({week, handleWeekChange}) => {
   // Definir el estado para el token, la semana y el estado de carga
   const [listUser, setLisUser] = useState("")
- 
+  const [weekStartDate, setWeekStartDate] = useState(null);
 
   const tokken=window.localStorage.getItem("tokken")
   const userId=window.localStorage.getItem("userId")
@@ -47,6 +49,12 @@ const Date = () => {
     }
   };
 
+  const handleDateChange = (date) => {
+    // Usa la función setWeekStartDate para actualizar el estado
+    setWeekStartDate(date);
+  };
+
+
   // Usar el efecto para llamar a la función getFirstWeek cuando se monta el componente
   useEffect(() => {
     getListUsers();
@@ -68,9 +76,18 @@ const Date = () => {
       }
  
       <label htmlFor=""><strong>Semana de inicio lunes: </strong></label>
-      <input className='user' type="date" />
-      <button className='week button'>Semana Anterior</button>
-      <button className='week button'>Semana Proxima</button>
+      <DatePicker
+        className="user"
+        selected={weekStartDate}
+        onChange={(date) => {setWeekStartDate(date), handleDateChange}}
+        value={week}
+      />
+      <button className="week button" onClick={() => handleWeekChange(-7)}>
+        Semana Anterior
+      </button>
+      <button className="week button" onClick={() => handleWeekChange(7)}>
+        Semana Proxima
+      </button>
       <button className='button'>Filtrar</button>
       <div className='line-week'></div>
     </div>

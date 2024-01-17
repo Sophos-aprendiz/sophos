@@ -13,7 +13,7 @@ export const TimeSheetProvider = ({ children }) => {
   const [listaProyectos, setListaProyectos] = useState([]);
   const [proyectId, setProyectId] = useState("");
   const [categoryId, setCategoryId] = useState("");
-  const [week] = useGetFirstWeek();
+  const [week, loadinng, updateWeek, ] = useGetFirstWeek();
   const [timeSheet, setTimeSheet] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
@@ -267,6 +267,7 @@ export const TimeSheetProvider = ({ children }) => {
         categoryId,
         setCategoryId,
         category,
+        updateWeek
       }}
     >
       {children}
