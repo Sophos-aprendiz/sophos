@@ -14,7 +14,6 @@
     "@azure/msal-react": "^2.0.7",
     "@tabler/icons-react": "^2.46.0",
     "axios": "^1.6.2",
-    "DatePicker": "^2.0.0",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
     "react-dom": "^18.2.0",

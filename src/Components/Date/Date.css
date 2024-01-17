@@ -1,57 +1,57 @@
-.date{
-    width: 98%;
-    height: 100px;
-    position: absolute;
-    top: 30%;
-    left: 2%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-    
+.date {
+  width: 98%;
+  height: 100px;
+  position: absolute;
+  top: 30%;
+  left: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.button{
-    width: 130px;
-    height: 40px;
-    background-color: var(--violet);
-    color: var(--white);
-    border: 0;
-    border-radius: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+.button {
+  width: 130px;
+  height: 40px;
+  background-color: var(--violet);
+  color: var(--white);
+  border: 0;
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
-.week{
-    width: 150px;
+.week {
+  width: 150px;
 }
-.date-box{
-    width: 160px;
-    height: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-radius: 10px;
-    border: 2px solid var(--violet);
+.date-box {
+  width: 160px;
+  height: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  border: 2px solid var(--violet);
 }
-.user{
-    height: 20px;
-    width: 160px;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-radius: 10px;
-    border: 2px solid var(--violet);
+.user {
+  height: 20px;
+  width: 160px;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid var(--violet);
 }
 input[type="date"] {
-    text-align: center;
-  }
-  input[type="text"]::placeholder {
-    text-align: center;
-  }
-  .line-week{
-    height: 4px;
-    width: 94%;
-    background-color: var(--violet);
-    position: absolute;
-    top: 100%;
-    left: 40px;
-    border-radius: 10px;
-  }
+  text-align: center;
+}
+input[type="text"]::placeholder {
+  text-align: center;
+}
+.line-week {
+  height: 4px;
+  width: 94%;
+  background-color: var(--violet);
+  position: absolute;
+  top: 100%;
+  left: 40px;
+  border-radius: 10px;
+}
