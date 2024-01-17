@@ -1,18 +1,19 @@
 .container{
-    width: 100%;
-    display: flex;
-    position: absolute;
+    width: 99%;
+    display: grid;
+    grid-template-columns: auto auto auto;
     top: 30%;
     left: 1%;
 }
 .container-client{
-   display: flex;
-   margin-left: 5px;
+   display: grid;
+   grid-template-columns:  auto auto auto auto auto auto auto auto ;
 }
 .container-desc{
-    display: flex;
-    width: 150px;
+    display: grid;
+    justify-content: center;
 }
 .container-days{
-   display: flex;
+    display: grid;
+    grid-template-columns:  auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
 }

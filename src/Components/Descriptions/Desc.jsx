@@ -4,36 +4,37 @@ const Desc = () => {
   return (
     <div className='container'>
         <div className='container-client'>
-            <p>Nombre Area</p>
-            <p>|</p>
-            <p>Nombre Cliente</p>
-            <p>|</p>
-            <p>Codigo Proyecto</p>
-            <p>|</p>
-            <p>Nombre Categoria</p>
-            <p></p>
+            <div>Nombre Area</div>
+            <div>|</div>
+            <div>Nombre Cliente</div>
+            <div>|</div>
+            <div>Codigo Proyecto</div>
+            <div>|</div>
+            <div>Nombre Categoria</div>
+            <div>|</div>
         </div>
         <div className='container-desc'>
-            <p>|</p>
-            <p>Descripcion</p> 
-            <p>|</p>
+            
+            <div>Descripcion</div> 
+            
         </div>
         <div className='container-days'>
-            <p>Lunes</p>
-            <p>|</p>
-            <p>Martes</p>
-            <p>|</p>
-            <p>Miercoles</p>
-            <p>|</p>
-            <p>Jueves</p>
-            <p>|</p>
-            <p>Viernes</p>
-            <p>|</p>
-            <p>Sabado</p>
-            <p>|</p>
-            <p>Domingo</p>
-            <p>|</p>
-            <p>Total</p>
+          <div>|</div>
+            <div>Lunes</div>
+            <div>|</div>
+            <div>Martes</div>
+            <div>|</div>
+            <div>Miercoles</div>
+            <div>|</div>
+            <div>Jueves</div>
+            <div>|</div>
+            <div>Viernes</div>
+            <div>|</div>
+            <div>Sabado</div>
+            <div>|</div>
+            <div>Domingo</div>
+            <div>|</div>
+            <div>Total</div>
         </div>
     </div>
   )

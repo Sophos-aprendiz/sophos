@@ -1,31 +1,8 @@
 .timeSheetItem {
   display: grid;
+  width: 100%;
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   grid-template-rows: 50px auto;
-  max-width: 1500px;
   font-size: 13px;
+  text-overflow: clip;
 }
-/* .containerOne {
-  display: grid;
-  width: 60%;
-  justify-content: space-evenly;
-  position: relative;
-  left: -3%;
-}
-.containerTwo {
-  display: grid;
-  width: 20%;
-  justify-content: center;
-  position: relative;
-  left: -3%;
-}
-.containerThree {
-  display: grid;
-  width: 60%;
-  justify-content: space-evenly;
-  position: relative;
-  left: -6%;
-}
-.day {
-  margin-left: 13%;
-} */

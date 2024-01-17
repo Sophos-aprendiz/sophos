@@ -18,10 +18,11 @@ const TimeSheetItem = ({
 }) => {
   return (
     <div className="timeSheetItem">
+
         <div>{areaName}</div>
         <div>{clientName}</div>
         <div>{projectName}</div>
-        <div>{categoryName}</div>
+        <div className="categoryName">{categoryName}</div>
         <div>{projectDescription}</div>
         <div className="day">{monday}</div>
         <div className="day">{tuesday}</div>
