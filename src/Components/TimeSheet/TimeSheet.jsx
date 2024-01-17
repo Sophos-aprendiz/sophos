@@ -8,7 +8,7 @@ import Spinner from "../Spinner/Spinner";
 
 export const TimeSheet = () => {
   const { selectTimesheet, loading } = useContext(TimeSheetContext);
-
+  console.log(selectTimesheet);
   return (
     <div className="timesheet-container">
       {loading ? (
@@ -17,6 +17,7 @@ export const TimeSheet = () => {
         selectTimesheet?.map((time, index) => {
           return (
             <TimeSheetItem
+              timeEntryId={time.timeEntryId}
               areaName={time.areaName}
               clientName={time.clientName}
               projectName={time.projectName}

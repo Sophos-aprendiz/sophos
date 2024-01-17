@@ -5,6 +5,9 @@
   max-width: 1500px;
   font-size: 13px;
 }
+.icons {
+  cursor: pointer;
+}
 /* .containerOne {
   display: grid;
   width: 60%;

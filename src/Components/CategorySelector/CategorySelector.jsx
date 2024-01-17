@@ -7,26 +7,28 @@ const CategorySelector = () => {
   const { proyectId, category, setCategoryId } = useContext(TimeSheetContext);
   const [listCategories, setListCategories] = useState([]);
   const getCategories = async () => {
-    try {
-      const authToken = window.localStorage.getItem("tokken");
-      const userName = window.localStorage.getItem("user");
-      const { data } = await axios.get(
-        "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/Section1-getCategoriesByUserAndSection",
-        {
-          params: {
-            UserName: userName,
-            Section: category,
-            ProjectId: proyectId,
-          },
-          headers: {
-            Authorization: `Bearer ${authToken}`,
-          },
-        }
-      );
+    if (proyectId) {
+      try {
+        const authToken = window.localStorage.getItem("tokken");
+        const userName = window.localStorage.getItem("user");
+        const { data } = await axios.get(
+          "https://testapp.sophossolutions.com/SophosApiChronus/api/tt/ProjectTimeSheet/Section1-getCategoriesByUserAndSection",
+          {
+            params: {
+              UserName: userName,
+              Section: category,
+              ProjectId: proyectId,
+            },
+            headers: {
+              Authorization: `Bearer ${authToken}`,
+            },
+          }
+        );
 
-      setListCategories(data?.data ?? []);
-    } catch (error) {
-      console.error("Error al obtener categorias:", error);
+        setListCategories(data?.data ?? []);
+      } catch (error) {
+        console.error("Error al obtener categorias:", error);
+      }
     }
   };
   const handleOnChange = (e) => {

@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import useGetUserId from "../../hooks/useGetUserId";
 import Block from "../Block/Block";
 import Box from "../Box/Box";
@@ -10,6 +11,7 @@ const UIPanel = () => {
   else
     return (
       <div>
+        <Toaster position="bottom-right" reverseOrder={false} />
         <Header email={accounts[0].username} />
         <Box />
         <Block />

@@ -5,11 +5,11 @@ import ProjectSelector from "./ProjectSelector";
 import useInsertTimeEntry from "../../hooks/InsertTimeEntry.jsx"; // Ajusta la ruta del import si es necesario
 import CategorySelector from "../CategorySelector/CategorySelector.jsx";
 import { TimeSheetContext } from "../context/index.jsx";
+import toast from "react-hot-toast";
 
 // Componente Info
 const Info = () => {
-  // Estado para los días
-  const [dias, setDias] = useState({
+  const initialState = {
     lunes: "",
     martes: "",
     miercoles: "",
@@ -17,7 +17,9 @@ const Info = () => {
     viernes: "",
     sabado: "",
     domingo: "",
-  });
+  };
+  // Estado para los días
+  const [dias, setDias] = useState(initialState);
   const [descrption, setDescription] = useState("");
   const handleDescription = (e) => {
     const { value } = e.target;
@@ -50,17 +52,19 @@ const Info = () => {
 
   // Obtiene el objeto { insert, loading } del hook
   const { postInsert } = useInsertTimeEntry();
-  const { categoryId } = useContext(TimeSheetContext);
+  const { categoryId, proyectId } = useContext(TimeSheetContext);
   // Función para manejar la inserción
   const handleInsert = async () => {
-    if (categoryId) {
+    if (proyectId) {
       try {
         await postInsert(dias, descrption, categoryId);
-        console.log("Inserción exitosa");
+        toast.success("Se han insertado correctamente");
+        setDias(initialState);
       } catch (error) {
         console.error("Error al insertar:", error);
+        toast.error(error);
       }
-    }
+    } else toast.error("Seleccione un proyecto");
   };
 
   // Renderizado del componente
