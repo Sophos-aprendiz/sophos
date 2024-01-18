@@ -24,15 +24,11 @@
   width: 92%;
   height: 400px;
   background-color: rgb(237, 218, 253);
-  border-radius: 20px;
+  border-radius: 0 0 20px 20px;
   border: 2px solid var(--violet);
   margin-top: 42px;
 }
 .title {
-  width: 100%;
-  height: 30px;
-  display: flex;
-  justify-content: space-around;
   align-items: center;
   color: var(--white);
   background-color: var(--violet);
@@ -46,4 +42,10 @@
   display: flex;
   position: absolute;
   left: 600px;
+}
+.table-total th,
+.table-total td {
+  width: 2%;
+  padding: 8px;
+  text-align: center;
 }

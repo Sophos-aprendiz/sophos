@@ -93,7 +93,6 @@ const Date = ({ week, handleWeekChange }) => {
       <button className="week button" onClick={() => handleWeekChange(7)}>
         Semana Proxima
       </button>
-      <div className="line-week"></div>
     </div>
   );
 };

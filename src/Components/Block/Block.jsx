@@ -5,6 +5,7 @@ import Input from "../Inputs/Input";
 import { TimeSheet } from "../TimeSheet/TimeSheet";
 import { useContext } from "react";
 import { TimeSheetContext } from "../context";
+import { Table } from "react-bootstrap";
 const Block = () => {
   const { setSection } = useContext(TimeSheetContext);
   const handleOnChange = (event) => {
@@ -22,30 +23,25 @@ const Block = () => {
         <TimeSheet />
       </div>
       <div className="blockTwo">
-      
-        <div className="title">
-          <div className="concept"> Concepto </div>
-          <div className="results">
-            <p>|</p>
-            <p>Lunes</p>
-            <p>|</p>
-            <p>Martes</p>
-            <p>|</p>
-            <p>Miercoles</p>
-            <p>|</p>
-            <p>Jueves</p>
-            <p>|</p>
-            <p>Viernes</p>
-            <p>|</p>
-            <p>Sabado</p>
-            <p>|</p>
-            <p>Domingo</p>
-            <p>|</p>
-            <p>Total</p>
-            <p>|</p>
-          </div>
-        </div>
-        <Total />
+        <Table className="table-total" borderless>
+          <thead className="title">
+            <tr>
+              <th> </th>
+              <th>Concepto</th>
+              <th></th>
+              <th>Lunes</th>
+              <th>Martes</th>
+              <th>Miercoles</th>
+              <th>Jueves</th>
+              <th>Viernes</th>
+              <th>Sabado</th>
+              <th>Domingo</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+
+          <Total />
+        </Table>
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ export const TimeSheet = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <Table className="table" bordered size="lg">
+        <Table className="table" bordered  size="lg">
           <thead>
             <tr>
               <th>Nombre Area</th>

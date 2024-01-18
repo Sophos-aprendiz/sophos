@@ -46,12 +46,3 @@ input[type="date"] {
 input[type="text"]::placeholder {
   text-align: center;
 }
-.line-week {
-  height: 4px;
-  width: 94%;
-  background-color: var(--violet);
-  position: absolute;
-  top: 100%;
-  left: 40px;
-  border-radius: 10px;
-}

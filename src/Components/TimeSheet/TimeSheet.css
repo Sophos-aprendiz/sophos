@@ -6,8 +6,8 @@
   padding-left: 24px;
   overflow-x: hidden;
 }
-th,
-td {
+.timesheet-container th,
+.timesheet-container td {
   width: 2%;
   padding: 4px;
   text-align: center;
