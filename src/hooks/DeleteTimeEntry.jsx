@@ -1,47 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/prop-types */
+import { useEffect } from "react";
+import axios from "axios";
 
 const DeleteTimeEntry = ({ timeEntryId, onClose }) => {
-  const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
         if (!timeEntryId) {
-          console.error("timeEntryId no disponible. La eliminación no se realizará.");
+          console.error(
+            "timeEntryId no disponible. La eliminación no se realizará."
+          );
           return;
         }
 
-        console.log('Realizando la solicitud de eliminación...');
+        console.log("Realizando la solicitud de eliminación...");
 
         const authToken = window.localStorage.getItem("tokken");
         const userName = window.localStorage.getItem("user");
         const url = `https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/DeleteTimeEntry?IdTimeEntry=${timeEntryId}&WHODIDIT=${userName}`;
 
         const headers = {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${authToken}`,
+          Accept: "application/json",
+          Authorization: `Bearer ${authToken}`,
         };
 
-        const response = await axios.delete(url, { 'headers': headers });
-        console.log("TimeEntry eliminado:", response.data);
+        await axios.delete(url, { headers: headers });
 
         onClose();
       } catch (error) {
-        console.error('Error en fetchData:', error);
-      } finally {
-        setLoading(false);
+        console.error("Error en fetchData:", error);
       }
     };
 
     fetchData();
   }, [timeEntryId, onClose]);
 
-  return (
-    <>
-      {/* Puedes agregar contenido aquí según sea necesario */}
-    </>
-  );
+  return <>{/* Puedes agregar contenido aquí según sea necesario */}</>;
 };
 
 export default DeleteTimeEntry;
