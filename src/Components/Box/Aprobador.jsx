@@ -8,14 +8,13 @@ const Aprobador = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-
-          const tokken=window.localStorage.getItem("tokken")
-          const userName=window.localStorage.getItem("user")
+        const tokken = window.localStorage.getItem("tokken");
+        const userName = window.localStorage.getItem("user");
         // Obtener el token del resultado
 
         // Realizar la solicitud GET para obtener los datos del aprobador correspondiente a 'luis.ruizr'
         const response = await axios.get(
-          'https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/getApproverByUserName',
+          "https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/getApproverByUserName",
           {
             params: {
               userName: userName,
@@ -39,12 +38,13 @@ const Aprobador = () => {
   }, []);
 
   if (loading) return <h1>Loading...</h1>;
-
-  return (
-    <div>
-      <p>{aprobadorData.userName}</p>
-    </div>
-  );
+  if (aprobadorData.userName) {
+    return (
+      <div>
+        <p>{aprobadorData.userName}</p>
+      </div>
+    );
+  }
 };
 
 export default Aprobador;

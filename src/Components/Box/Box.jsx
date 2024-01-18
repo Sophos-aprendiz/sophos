@@ -6,15 +6,13 @@ import Aprobador from './Aprobador';
 import EstadoSemana from './EstadoSemana';
 import Spinner from '../Spinner/Spinner';
 import Date from "../Date/Date";
-import useGetFirstWeek from '../../hooks/useGetFirstWeek';
 
 
-const Box = () => {
+
+const Box = ({ week,loading, handleWeekChange}) => {
     // Definir el estado para el token, la semana y el estado de carga
 
-const [week,loading]=useGetFirstWeek()
 
-  
   return (
     <div className='set'>
         <div className='box'>
@@ -28,7 +26,7 @@ const [week,loading]=useGetFirstWeek()
         </div>
         <div className='box'>
             <strong><p>Estado</p></strong>
-            <div className='api'><EstadoSemana/></div>
+            <div className='api'><EstadoSemana week={week} loading={loading} /></div>
         </div>
         <div className='box'>
             <strong><p>Aprobador</p></strong>
@@ -39,8 +37,9 @@ const [week,loading]=useGetFirstWeek()
             <div className='api'>Colombia</div>
         </div>
         
-        <Date/>
+        <Date handleWeekChange = { (daysToAdd)=> handleWeekChange (daysToAdd)} week={week} />
         <div className='line-box'></div>
+
         
     </div>
   )

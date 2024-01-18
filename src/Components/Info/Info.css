@@ -20,7 +20,6 @@
 /*-----------------------------------------------------------------------------------------*/
 .container-two{
     display: grid;
-    grid-template-columns: 100%;
 }
 .input-description{
     width: 150px;

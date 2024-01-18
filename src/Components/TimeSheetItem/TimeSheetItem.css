@@ -4,5 +4,8 @@
   grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
   grid-template-rows: 50px auto;
   font-size: 13px;
-  text-overflow: clip;
 }
+.icons {
+  cursor: pointer;
+}
+

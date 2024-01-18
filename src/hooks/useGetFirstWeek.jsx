@@ -36,7 +36,18 @@ const useGetFirstWeek = () => {
         headers: headersG,
         params,
       });
-      setWeek(responseGetWeek.data.data[0].fecha);
+      let originalDate = responseGetWeek.data.data[0].fecha;
+      
+      console.log({originalDate})
+      let dateObject = new Date(originalDate);
+
+     
+      dateObject.setDate(dateObject.getDate() - 0);
+
+    
+      let formattedDate = formatDate(dateObject);
+
+      setWeek(formattedDate);
 
       // Cambiar el estado de carga a falso
       setLoading(false);
@@ -45,10 +56,33 @@ const useGetFirstWeek = () => {
       console.log(error);
     }
   };
+
+  const updateWeek = (daysToAdd) => {
+    if (week) {
+      console.log({week})
+      let newDate = new Date(week);
+      console.log(newDate.getDate())
+      newDate.setDate(newDate.getDate() + daysToAdd);
+      console.log({daysToAdd})
+      let formattedDate = formatDate(newDate);
+      setWeek(formattedDate);
+    }
+  };
+  console.log(week)
+ 
+
+  const formatDate = (date) => {
+    return new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).format(date);
+  };
+
   useEffect(()=>{
     getFirstWeek()
   },[])
-  return [week,loading]
+  return [week,loading, updateWeek]
     
   
 }

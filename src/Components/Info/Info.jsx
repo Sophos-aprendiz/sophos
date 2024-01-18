@@ -5,11 +5,12 @@ import ProjectSelector from "./ProjectSelector";
 import useInsertTimeEntry from "../../hooks/InsertTimeEntry.jsx"; // Ajusta la ruta del import si es necesario
 import CategorySelector from "../CategorySelector/CategorySelector.jsx";
 import { TimeSheetContext } from "../context/index.jsx";
+import toast from "react-hot-toast";
+import { Container } from "react-bootstrap";
 
 // Componente Info
 const Info = () => {
-  // Estado para los días
-  const [dias, setDias] = useState({
+  const initialState = {
     lunes: "",
     martes: "",
     miercoles: "",
@@ -17,7 +18,9 @@ const Info = () => {
     viernes: "",
     sabado: "",
     domingo: "",
-  });
+  };
+  // Estado para los días
+  const [dias, setDias] = useState(initialState);
   const [descrption, setDescription] = useState("");
   const handleDescription = (e) => {
     const { value } = e.target;
@@ -50,22 +53,25 @@ const Info = () => {
 
   // Obtiene el objeto { insert, loading } del hook
   const { postInsert } = useInsertTimeEntry();
-  const { categoryId } = useContext(TimeSheetContext);
+  const { categoryId, proyectId } = useContext(TimeSheetContext);
   // Función para manejar la inserción
   const handleInsert = async () => {
-    if (categoryId) {
+    if (proyectId) {
       try {
         await postInsert(dias, descrption, categoryId);
-        console.log("Inserción exitosa");
+        toast.success("Se han insertado correctamente");
+        setDias(initialState);
       } catch (error) {
         console.error("Error al insertar:", error);
+        toast.error(error);
       }
-    }
+    } else toast.error("Seleccione un proyecto");
   };
 
   // Renderizado del componente
   return (
     <div className="container-info">
+      <Container></Container>
       <div className="container-one">
         <select className="select"></select>
 
@@ -82,6 +88,7 @@ const Info = () => {
         />
       </div>
       <div className="container-thre">
+        <label htmlFor=""></label>
         <input
           className="input-hour"
           type="number"
