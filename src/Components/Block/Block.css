@@ -12,14 +12,9 @@
   background-color: rgb(237, 218, 253);
   border-radius: 20px;
   border: 2px solid var(--violet);
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
 }
 .block-one {
   width: 95%;
-  display: grid;
-  grid-template-rows: 150px auto;
 }
 .block-two {
   width: 98%;

@@ -5,7 +5,6 @@ import Input from "../Inputs/Input";
 import { TimeSheet } from "../TimeSheet/TimeSheet";
 import { useContext } from "react";
 import { TimeSheetContext } from "../context";
-import chronoLogo from "../../assets/Chronus_3-1.png";
 const Block = () => {
   const { setSection } = useContext(TimeSheetContext);
   const handleOnChange = (event) => {
@@ -16,10 +15,7 @@ const Block = () => {
   return (
     <div className="div-block">
       <div className="block">
-        <div>
-          <Input handleOnChange={handleOnChange} />
-          <img src={chronoLogo} />
-        </div>
+        <Input handleOnChange={handleOnChange} />
 
         <Info />
 

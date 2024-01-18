@@ -1,10 +1,13 @@
 .desplegable {
   display: inline-block;
+  width: 575px;
 }
 .contenedor {
   margin: 24px 0 0 24px;
+  height: fit-content;
 }
 .select-hours {
+  width: 1500px;
   padding: 10px;
   font-size: 16px;
   border: 1px solid var(--violet);
