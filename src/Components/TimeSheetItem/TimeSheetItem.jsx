@@ -4,6 +4,8 @@ import "./TimeSheetItem.css";
 import { useState } from "react";
 import { useUpdateTimeEntry } from "../../hooks/useUpdateTimeEntry";
 import toast from "react-hot-toast";
+import DeleteTimeEntry from "../../hooks/DeleteTimeEntry";
+
 const TimeSheetItem = ({
   areaName,
   clientName,
@@ -22,6 +24,7 @@ const TimeSheetItem = ({
   timeEntryId,
 }) => {
   const { updateInsert } = useUpdateTimeEntry();
+  const deleteData = DeleteTimeEntry();
   const [edit, setEdit] = useState(false);
   const initialState = {
     lunes: monday,
@@ -67,6 +70,11 @@ const TimeSheetItem = ({
   const calcularTotal = () => {
     const total = Object.values(dias).reduce((acc, curr) => acc + curr, 0);
     return total;
+  };
+
+  const handleDeleteClick = () => {
+    deleteData(timeEntryId);
+    toast.success("Se ha eliminado con exito");
   };
 
   return (
@@ -180,7 +188,7 @@ const TimeSheetItem = ({
 
       <IconX
         className="icons"
-        onClick={() => console.log(timeEntryId)}
+        onClick={handleDeleteClick}
         size={16}
         color="purple"
       />
