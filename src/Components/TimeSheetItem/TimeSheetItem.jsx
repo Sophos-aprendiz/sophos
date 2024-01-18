@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import { IconCheck, IconEdit, IconX } from "@tabler/icons-react";
 import "./TimeSheetItem.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useUpdateTimeEntry } from "../../hooks/useUpdateTimeEntry";
 import toast from "react-hot-toast";
 import DeleteTimeEntry from "../../hooks/DeleteTimeEntry";
+import { TimeSheetContext } from "../context";
 
 const TimeSheetItem = ({
   areaName,
@@ -26,6 +27,7 @@ const TimeSheetItem = ({
   const { updateInsert } = useUpdateTimeEntry();
   const deleteData = DeleteTimeEntry();
   const [edit, setEdit] = useState(false);
+  const { estadoSemana } = useContext(TimeSheetContext);
   const initialState = {
     lunes: monday,
     martes: tuesday,
@@ -37,7 +39,14 @@ const TimeSheetItem = ({
   };
   // Estado para los días
   const [dias, setDias] = useState(initialState);
-  const handleEdit = () => setEdit(true);
+  const canInsert = estadoSemana.status == "ABIERTO";
+  const handleEdit = () => {
+    if (!canInsert) {
+      toast.error(`El estado de la semana es ${estadoSemana.status}`);
+      return;
+    }
+    setEdit(true);
+  };
   const handleCheck = async () => {
     try {
       await updateInsert(dias, projectDescription, categoryId, timeEntryId);
@@ -47,6 +56,7 @@ const TimeSheetItem = ({
       console.error(error);
     }
   };
+
   // Función para manejar cambios en el input
   const handleChange = (dia, value) => {
     // Verificar que el valor sea un número válido
@@ -73,6 +83,10 @@ const TimeSheetItem = ({
   };
 
   const handleDeleteClick = () => {
+    if (!canInsert) {
+      toast.error(`El estado de la semana es ${estadoSemana.status}`);
+      return;
+    }
     deleteData(timeEntryId);
     toast.success("Se ha eliminado con exito");
   };
@@ -125,7 +139,7 @@ const TimeSheetItem = ({
               step="0.5"
               min="0"
               max="24"
-              value={dias.miertdes}
+              value={dias.miercoles}
               onChange={(e) => handleChange("miercoles", e.target.value)}
             />
           </td>
@@ -226,7 +240,7 @@ const TimeSheetItem = ({
               className="icons"
               onClick={handleEdit}
               size={16}
-              color="purple"
+              color="#9b43fb"
             />
           )}
 
@@ -234,7 +248,7 @@ const TimeSheetItem = ({
             className="icons"
             onClick={handleDeleteClick}
             size={16}
-            color="purple"
+            color="#c23e3e"
           />
         </div>
       </td>

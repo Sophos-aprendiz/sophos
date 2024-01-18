@@ -18,6 +18,7 @@ export const TimeSheetProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
   const [updateTimeSheet, setUpdtaTimeSheet] = useState(0);
+  const [estadoSemana, setEstadoSemana] = useState({});
 
   const [total, setTotal] = useState([
     {
@@ -272,6 +273,8 @@ export const TimeSheetProvider = ({ children }) => {
         updateWeek,
         loadinng,
         week,
+        setEstadoSemana,
+        estadoSemana,
       }}
     >
       {children}

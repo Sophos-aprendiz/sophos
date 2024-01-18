@@ -2,10 +2,11 @@
   height: 230px;
   margin: auto;
   overflow: scroll;
-  scrollbar-width: none;
+
   padding-left: 24px;
   overflow-x: hidden;
 }
+
 .timesheet-container th,
 .timesheet-container td {
   width: 2%;

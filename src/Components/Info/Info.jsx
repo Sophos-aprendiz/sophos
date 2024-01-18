@@ -52,9 +52,16 @@ const Info = () => {
 
   // Obtiene el objeto { insert, loading } del hook
   const { postInsert } = useInsertTimeEntry();
-  const { categoryId, proyectId } = useContext(TimeSheetContext);
+  const { categoryId, proyectId, estadoSemana } = useContext(TimeSheetContext);
+
+  const canInsert = estadoSemana.status === "ABIERTO";
+
   // Función para manejar la inserción
   const handleInsert = async () => {
+    if (!canInsert) {
+      toast.error(`El estado de la semana es ${estadoSemana.status}`);
+      return;
+    }
     if (proyectId) {
       try {
         await postInsert(dias, descrption, categoryId);
@@ -66,7 +73,7 @@ const Info = () => {
       }
     } else toast.error("Seleccione un proyecto");
   };
-  
+
   // Renderizado del componente
   return (
     <div className="container-info">

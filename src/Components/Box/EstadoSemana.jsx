@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../Spinner/Spinner";
 import { formatDate } from "../../utils/formatDate";
+import { TimeSheetContext } from "../context";
 
 const EstadoSemana = ({ week, loading }) => {
-  const [estadoSemana, setEstadoSemana] = useState({});
+  const { estadoSemana, setEstadoSemana } = useContext(TimeSheetContext);
 
   const fetchData = async () => {
     try {

@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   width: 40%;
-  margin: 10px 0 0 205px;
+  margin: 10px 0 0 200px;
 }
 .selects {
   margin-left: 24px;
@@ -65,7 +65,7 @@
 /*-----------------------------------------------------------------------------------------*/
 .container-thre {
   display: flex;
-  gap: 32px;
+  gap: 30px;
   margin-bottom: 45px;
 }
 .input-hour {
