@@ -6,8 +6,9 @@ import { TimeSheet } from "../TimeSheet/TimeSheet";
 import { useContext } from "react";
 import { TimeSheetContext } from "../context";
 import { Table } from "react-bootstrap";
+import Spinner from "../Spinner/Spinner";
 const Block = () => {
-  const { setSection } = useContext(TimeSheetContext);
+  const { setSection, loading } = useContext(TimeSheetContext);
   const handleOnChange = (event) => {
     const value = event.target.value;
     setSection(value);
@@ -16,11 +17,17 @@ const Block = () => {
   return (
     <div className="div-block">
       <div className="block">
-        <Input handleOnChange={handleOnChange} />
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Input handleOnChange={handleOnChange} />
 
-        <Info />
+            <Info />
 
-        <TimeSheet />
+            <TimeSheet />
+          </>
+        )}
       </div>
       <div className="blockTwo">
         <Table className="table-total" borderless>

@@ -1,40 +1,40 @@
-header{
-    background-color: var(--white);
-    
-    padding: 12px;
-    color: var(--white);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+header {
+  background-color: var(--white);
+
+  padding: 12px;
+  color: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-header img{
-    height: 80px;
+
+header img {
+  height: 80px;
 }
-header div{
-    font-size: 14px;
-    font-weight: 500;
+header div {
+  font-size: 14px;
+  font-weight: 500;
 }
-header div img{
+header div img {
   width: 20px;
   height: 20px;
 }
-.header-content{
-    display: flex;
-    gap: 18px;
-    color:var(--black)
-    
+.header-content {
+  display: flex;
+  gap: 18px;
+  color: var(--black);
 }
-.header-content p{
-    color: var(--white);
-    cursor: pointer;
+.header-content p {
+  color: var(--white);
+  cursor: pointer;
 }
 .user-email {
-    cursor: pointer;
-    color: var(--violet);
-    margin-right: 20px;
-  }
+  cursor: pointer;
+  color: var(--violet);
+  margin-right: 20px;
+}
 
-.line-header{
+.line-header {
   height: 5px;
   width: 98%;
   background-color: var(--violet);
@@ -43,41 +43,40 @@ header div img{
   left: 10px;
   border-radius: 10px;
 }
-  
-  /* Estilos para el menú desplegable */
-  .dropdown-menu {
-    
-    position: absolute;
-    background-color: var(--violet);
-    top: 100px;
-    right: 20px;
-    z-index: 1;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-  }
-  .dropdown-menu img{
-    width: 20px;
-    height: 20px;
-  }
-  .dropdown-menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown-menu li {
-    padding: 8px 16px;
-    cursor: pointer;
-    display: flex;
-    align-content: center;
-    color: var(--black);
-    gap: 8px;
-  }
-  
-  .dropdown-menu :hover {
-    background-color: #f0f0f0;
-  }
+
+/* Estilos para el menú desplegable */
+.dropdown-menu {
+  position: absolute;
+  background-color: var(--violet);
+  top: 100px;
+  right: 20px;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.dropdown-menu img {
+  width: 20px;
+  height: 20px;
+}
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+  cursor: pointer;
+  display: flex;
+  align-content: center;
+  color: var(--black);
+  gap: 8px;
+}
+
+.dropdown-menu :hover {
+  background-color: #f0f0f0;
+}

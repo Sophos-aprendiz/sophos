@@ -151,6 +151,7 @@ export const TimeSheetProvider = ({ children }) => {
   };
 
   const getAllTimeSheets = async () => {
+    setLoading(true);
     try {
       const timeSheets = {};
       let monday = 0;
@@ -202,6 +203,7 @@ export const TimeSheetProvider = ({ children }) => {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
   useEffect(() => {
