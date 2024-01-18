@@ -8,18 +8,48 @@ const Total = () => {
     <tbody>
       {total.map((section, index) => (
         <tr key={index}>
-          <td colSpan={3}>{section.name}</td>
-
-          <td>{section.hours.monday}</td>
-          <td>{section.hours.tuesday}</td>
-          <td>{section.hours.wednesday}</td>
-          <td>{section.hours.thursday}</td>
-          <td>{section.hours.friday}</td>
-          <td>{section.hours.saturday}</td>
-          <td>{section.hours.sunday}</td>
+          <td colSpan={3}>
+            <p
+              style={{
+                fontSize: "14px",
+              }}
+            >
+              {section.name}
+            </p>
+          </td>
 
           <td>
-            <strong>{section.hours.total}</strong>
+            <p className="text-timesheet">{section.hours.monday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.tuesday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.wednesday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.thursday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.friday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.saturday}</p>
+          </td>
+          <td>
+            <p className="text-timesheet">{section.hours.sunday}</p>
+          </td>
+
+          <td>
+            <strong>
+              <p
+                style={{
+                  fontSize: "14px",
+                }}
+              >
+                {section.hours.total}
+              </p>
+            </strong>
           </td>
         </tr>
       ))}

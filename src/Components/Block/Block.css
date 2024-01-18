@@ -24,7 +24,7 @@
 .blockTwo {
   margin: auto;
   width: 90%;
-  height: 450px;
+  height: 380px;
   background-color: rgb(237, 218, 253);
   border-radius: 0 0 20px 20px;
   border: 2px solid var(--violet);
