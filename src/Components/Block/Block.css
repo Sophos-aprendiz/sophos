@@ -8,7 +8,7 @@
 
 .block {
   width: 92%;
-  height: 70vh;
+  height: 75vh;
   background-color: rgb(237, 218, 253);
   border-radius: 20px;
   border: 2px solid var(--violet);
@@ -24,11 +24,9 @@
   width: 92%;
   height: 400px;
   background-color: rgb(237, 218, 253);
-  position: absolute;
-  top: 600px;
   border-radius: 20px;
   border: 2px solid var(--violet);
-  margin-bottom: 20px;
+  margin-top: 42px;
 }
 .title {
   width: 100%;

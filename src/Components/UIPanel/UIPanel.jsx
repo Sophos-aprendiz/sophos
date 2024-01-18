@@ -17,7 +17,6 @@ const UIPanel = () => {
     updateWeek(daysToAdd);
   };
 
-  console.log(week);
 
   if (loadingInitial) return <Spinner />;
   else

@@ -18,7 +18,7 @@ const useInsertTimeEntry = () => {
     setUserName(storedUserName);
   }, []);
 
-  const postInsert = async (dias, description, idCategory) => {
+  const postInsert = async (dias, description, idCategory = "") => {
     try {
       setLoading(true);
 

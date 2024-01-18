@@ -19,11 +19,10 @@ const Block = () => {
 
         <Info />
 
-        <div className="block-two">
-          <TimeSheet />
-        </div>
+        <TimeSheet />
       </div>
       <div className="blockTwo">
+      
         <div className="title">
           <div className="concept"> Concepto </div>
           <div className="results">

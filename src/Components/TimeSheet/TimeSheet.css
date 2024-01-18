@@ -1,5 +1,15 @@
-.timesheet-container{
-    height: 200px;
-    overflow: scroll;
-    scrollbar-width: none;
+.timesheet-container {
+  height: 230px;
+  margin: auto;
+  overflow: scroll;
+  scrollbar-width: none;
+  padding-left: 24px;
+  overflow-x: hidden;
+}
+th,
+td {
+  width: 2%;
+  padding: 4px;
+  text-align: center;
+  vertical-align: baseline;
 }

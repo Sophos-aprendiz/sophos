@@ -8,4 +8,9 @@
 .icons {
   cursor: pointer;
 }
-
+.text-timesheet {
+  font-weight: lighter;
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+}

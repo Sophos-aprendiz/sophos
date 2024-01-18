@@ -18,7 +18,6 @@ export const TimeSheetProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [selectTimesheet, setSelectTimesheet] = useState([]);
   const [updateTimeSheet, setUpdtaTimeSheet] = useState(0);
-  console.log(updateTimeSheet);
 
   const [total, setTotal] = useState([
     {
@@ -150,8 +149,6 @@ export const TimeSheetProvider = ({ children }) => {
       console.log(error);
     }
   };
-  
-  
 
   const getAllTimeSheets = async () => {
     try {
@@ -241,8 +238,6 @@ export const TimeSheetProvider = ({ children }) => {
     }
   }, [section]);
 
-  
-
   useEffect(() => {
     if (week) getAllTimeSheets();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -274,7 +269,7 @@ export const TimeSheetProvider = ({ children }) => {
         category,
         updateWeek,
         loadinng,
-        week
+        week,
       }}
     >
       {children}
