@@ -7,20 +7,21 @@ import { TimeSheetContext } from "../Components/context";
 
 const useInsertTimeEntry = () => {
   const [insert, setInsert] = useState("");
-  const [userName, setUserName] = useState(""); // Agrega el estado para userName
+  const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(true);
   const [week] = useGetFirstWeek();
   const authToken = window.localStorage.getItem("tokken");
   const { setUpdtaTimeSheet } = useContext(TimeSheetContext);
 
   useEffect(() => {
-    // Obtiene el userName al cargar el componente
     const storedUserName = window.localStorage.getItem("user");
     setUserName(storedUserName);
   }, []);
 
   const postInsert = async (dias, description, idCategory) => {
     try {
+      setLoading(true);
+
       if (!authToken) {
         console.error("Token no disponible. La inserción no se realizará.");
         return;
@@ -33,7 +34,7 @@ const useInsertTimeEntry = () => {
         Authorization: `Bearer ${authToken}`,
       };
       const body = {
-        categoryId: 805159,
+        categoryId: idCategory,
         timeEntryCreatorUserName: userName,
         timeEntryDescription: description,
         timeEntryEstimateDuration: 0,
@@ -57,11 +58,11 @@ const useInsertTimeEntry = () => {
     } catch (error) {
       console.error("Error al insertar:", error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Establecer loading a false después de la solicitud (incluso si hay un error)
     }
   };
 
-  return { insert, userName, loading, postInsert }; // Añade userName al retorno del hook
+  return { insert, userName, loading, postInsert };
 };
 
 export default useInsertTimeEntry;

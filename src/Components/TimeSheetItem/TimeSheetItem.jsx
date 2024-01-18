@@ -23,10 +23,12 @@ const TimeSheetItem = ({
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const handleDeleteClick = () => {
+    console.log('Botón de eliminación clickeado');
     setIsDeleteModalOpen(true);
   };
 
   const handleCloseModal = () => {
+    console.log('Cerrando el modal de eliminación');
     setIsDeleteModalOpen(false);
   };
 

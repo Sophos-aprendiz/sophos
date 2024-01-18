@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import useInsertTimeEntry from './InsertTimeEntry'; // Importa el hook
 
 const DeleteTimeEntry = ({ timeEntryId, onClose }) => {
-  const { userName, loading: insertLoading } = useInsertTimeEntry(); // Utiliza el hook para obtener el userName
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!timeEntryId || !userName) {
-          console.error("timeEntryId o userName no disponibles. La eliminación no se realizará.");
+        if (!timeEntryId) {
+          console.error("timeEntryId no disponible. La eliminación no se realizará.");
           return;
         }
 
-        // Puedes manejar la obtención del token de manera similar a InsertTimeEntry si es necesario
+        console.log('Realizando la solicitud de eliminación...');
 
         const authToken = window.localStorage.getItem("tokken");
+        const userName = window.localStorage.getItem("user");
         const url = `https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/DeleteTimeEntry?IdTimeEntry=${timeEntryId}&WHODIDIT=${userName}`;
 
         const headers = {
@@ -27,25 +25,21 @@ const DeleteTimeEntry = ({ timeEntryId, onClose }) => {
 
         const response = await axios.delete(url, { 'headers': headers });
         console.log("TimeEntry eliminado:", response.data);
-        // Puedes hacer algo con la respuesta si es necesario
 
-        // Cierra el modal o realiza otras acciones después de eliminar
         onClose();
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error en fetchData:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (!insertLoading) {
-      fetchData();
-    }
-  }, [timeEntryId, userName, insertLoading, onClose]);
+    fetchData();
+  }, [timeEntryId, onClose]);
 
   return (
     <>
-      
+      {/* Puedes agregar contenido aquí según sea necesario */}
     </>
   );
 };
