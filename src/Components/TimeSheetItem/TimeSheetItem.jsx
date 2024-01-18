@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import { IconCheck, IconEdit, IconX } from "@tabler/icons-react";
 import "./TimeSheetItem.css";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useUpdateTimeEntry } from "../../hooks/useUpdateTimeEntry";
 import toast from "react-hot-toast";
 import DeleteTimeEntry from "../../hooks/DeleteTimeEntry";
-import { TimeSheetContext } from "../context";
 
 const TimeSheetItem = ({
   areaName,
@@ -25,7 +24,7 @@ const TimeSheetItem = ({
   timeEntryId,
 }) => {
   const { updateInsert } = useUpdateTimeEntry();
-  const { setUpdtaTimeSheet } = useContext(TimeSheetContext);
+  const deleteData = DeleteTimeEntry();
   const [edit, setEdit] = useState(false);
   const initialState = {
     lunes: monday,
@@ -73,18 +72,9 @@ const TimeSheetItem = ({
     return total;
   };
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
   const handleDeleteClick = () => {
-    console.log("Botón de eliminación clickeado");
-    setIsDeleteModalOpen(true);
-    setUpdtaTimeSheet((state) => state++);
+    deleteData(timeEntryId);
     toast.success("Se ha eliminado con exito");
-  };
-
-  const handleCloseModal = () => {
-    console.log("Cerrando el modal de eliminación");
-    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -202,16 +192,6 @@ const TimeSheetItem = ({
         size={16}
         color="purple"
       />
-
-      {isDeleteModalOpen && (
-        <div className="delete-modal">
-          {/* Pasa correctamente el timeEntryId al componente DeleteTimeEntry */}
-          <DeleteTimeEntry
-            timeEntryId={timeEntryId}
-            onClose={handleCloseModal}
-          />
-        </div>
-      )}
     </div>
   );
 };
