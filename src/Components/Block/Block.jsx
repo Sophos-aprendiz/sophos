@@ -5,8 +5,7 @@ import Input from "../Inputs/Input";
 import { TimeSheet } from "../TimeSheet/TimeSheet";
 import { useContext } from "react";
 import { TimeSheetContext } from "../context";
-import { Col, Container, Row } from "react-bootstrap";
-
+import chronoLogo from "../../assets/Chronus_3-1.png";
 const Block = () => {
   const { setSection } = useContext(TimeSheetContext);
   const handleOnChange = (event) => {
@@ -15,52 +14,45 @@ const Block = () => {
   };
 
   return (
-    
-      
-      <div className="div-block">
+    <div className="div-block">
       <div className="block">
-        <Container>
-          <Row> <Col><Input handleOnChange={handleOnChange} /></Col>  </Row>
-          <Row> <Info /> </Row>
-        
-      <div className="block-one">
-        
-       
-        
-      </div>
-      <div className="block-two">
-        <TimeSheet />
-        
-      </div>
-      </Container>
-    </div>
-    <div className="blockTwo">
-      <div className="title">
-        <div className="concept"> Concepto </div>
-        <div className="results">
-          <p>|</p>
-          <p>Lunes</p>
-          <p>|</p>
-          <p>Martes</p>
-          <p>|</p>
-          <p>Miercoles</p>
-          <p>|</p>
-          <p>Jueves</p>
-          <p>|</p>
-          <p>Viernes</p>
-          <p>|</p>
-          <p>Sabado</p>
-          <p>|</p>
-          <p>Domingo</p>
-          <p>|</p>
-          <p>Total</p>
-          <p>|</p>
+        <div>
+          <Input handleOnChange={handleOnChange} />
+          <img src={chronoLogo} />
+        </div>
+
+        <Info />
+
+        <div className="block-two">
+          <TimeSheet />
         </div>
       </div>
-      <Total />
+      <div className="blockTwo">
+        <div className="title">
+          <div className="concept"> Concepto </div>
+          <div className="results">
+            <p>|</p>
+            <p>Lunes</p>
+            <p>|</p>
+            <p>Martes</p>
+            <p>|</p>
+            <p>Miercoles</p>
+            <p>|</p>
+            <p>Jueves</p>
+            <p>|</p>
+            <p>Viernes</p>
+            <p>|</p>
+            <p>Sabado</p>
+            <p>|</p>
+            <p>Domingo</p>
+            <p>|</p>
+            <p>Total</p>
+            <p>|</p>
+          </div>
+        </div>
+        <Total />
+      </div>
     </div>
-  </div>
-    
   );
 };
 

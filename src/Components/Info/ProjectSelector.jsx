@@ -40,14 +40,17 @@ const ProjectSelector = () => {
   };
 
   return (
-    <select onChange={handleOnChange} className="select">
-      <option value="">Select a Project</option>
-      {listaProyectos.map((project) => (
-        <option key={project.projectId} value={project.projectId}>
-          {project.projectName}
-        </option>
-      ))}
-    </select>
+    <div className="label">
+      <p>Codigo Proyecto:</p>
+      <select onChange={handleOnChange} className="select">
+        <option value="">Selecciona un proyecto</option>
+        {listaProyectos.map((project) => (
+          <option key={project.projectId} value={project.projectId}>
+            {project.projectName}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };
 export default ProjectSelector;

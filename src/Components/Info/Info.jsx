@@ -6,7 +6,6 @@ import useInsertTimeEntry from "../../hooks/InsertTimeEntry.jsx"; // Ajusta la r
 import CategorySelector from "../CategorySelector/CategorySelector.jsx";
 import { TimeSheetContext } from "../context/index.jsx";
 import toast from "react-hot-toast";
-import { Container } from "react-bootstrap";
 
 // Componente Info
 const Info = () => {
@@ -71,98 +70,121 @@ const Info = () => {
   // Renderizado del componente
   return (
     <div className="container-info">
-      <Container></Container>
-      <div className="container-one">
-        <select className="select"></select>
-
-        <select className="select"></select>
-        <ProjectSelector />
-        <CategorySelector />
+      <div className="selects">
+        <div className="container-one">
+          <ProjectSelector />
+          <CategorySelector />
+        </div>
+        <div className="container-two label">
+          <p>Descripción:</p>
+          <input
+            value={descrption}
+            onChange={handleDescription}
+            className="input-description"
+            type="textarea"
+          />
+        </div>
       </div>
-      <div className="container-two">
-        <input
-          value={descrption}
-          onChange={handleDescription}
-          className="input-description"
-          type="textarea"
-        />
+      <div className="container-days">
+        <div className="container-thre">
+          <div className="label-center">
+            <p>L</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.lunes}
+              onChange={(e) => handleChange("lunes", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>M</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.martes}
+              onChange={(e) => handleChange("martes", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>M</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.miercoles}
+              onChange={(e) => handleChange("miercoles", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>J</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.jueves}
+              onChange={(e) => handleChange("jueves", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>V</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.viernes}
+              onChange={(e) => handleChange("viernes", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>S</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.sabado}
+              onChange={(e) => handleChange("sabado", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>D</p>
+            <input
+              className="input-hour"
+              type="number"
+              step="0.5"
+              min="0"
+              max="24"
+              value={dias.domingo}
+              onChange={(e) => handleChange("domingo", e.target.value)}
+            />
+          </div>
+          <div className="label-center">
+            <p>T</p>
+            <input
+              className="input-hour total"
+              type="number"
+              value={calcularTotal()}
+              readOnly
+            />
+          </div>
+        </div>
+        <button className="button-insert" onClick={() => handleInsert()}>
+          Insertar
+        </button>
       </div>
-      <div className="container-thre">
-        <label htmlFor=""></label>
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.lunes}
-          onChange={(e) => handleChange("lunes", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.martes}
-          onChange={(e) => handleChange("martes", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.miercoles}
-          onChange={(e) => handleChange("miercoles", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.jueves}
-          onChange={(e) => handleChange("jueves", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.viernes}
-          onChange={(e) => handleChange("viernes", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.sabado}
-          onChange={(e) => handleChange("sabado", e.target.value)}
-        />
-        <input
-          className="input-hour"
-          type="number"
-          step="0.5"
-          min="0"
-          max="24"
-          value={dias.domingo}
-          onChange={(e) => handleChange("domingo", e.target.value)}
-        />
-
-        <input
-          className="input-hour total"
-          type="number"
-          value={calcularTotal()}
-          readOnly
-        />
-      </div>
-      <button className="button-insert" onClick={() => handleInsert()}>
-        Insertar
-      </button>
     </div>
   );
 };

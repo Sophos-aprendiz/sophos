@@ -1,21 +1,17 @@
-.contenedor {
-  text-align: center;
-  left: 7%;
-  top: 60px;
-}
-
 .desplegable {
   display: inline-block;
 }
+.contenedor {
+  margin: 24px 0 0 24px;
+}
 .select-hours {
-  
   padding: 10px;
   font-size: 16px;
   border: 1px solid var(--violet);
   border-radius: 5px;
   width: 100%;
   cursor: pointer;
-  outline: none; 
+  outline: none;
 }
 
 .select-hours:focus {

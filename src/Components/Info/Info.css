@@ -1,58 +1,92 @@
-.container-info{
-    width: 100%;
-    height: 100px;
-    top: 200px;
-    display: grid;
-    grid-template-columns: auto auto auto ;
+.container-info {
+  width: 100%;
+
+  display: flex;
+  margin-top: 30px;
+}
+.container-one {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+.container-days {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin: auto;
+}
+.selects {
+  margin-left: 30px;
+  width: 35%;
+  gap: 8px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 /*-----------------------------------------------------------------------------------------*/
-.container-one{
-    display: grid;
-    grid-template-columns: auto auto auto auto ;
+.label {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
 }
-.select{
-    width: 110px;
-    height: 20px;
-    margin-left: 30px;
-    border: 1px solid var(--violet);
-    border-radius: 10px;
+.label-center {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+  width: fit-content;
+}
+.label-center p {
+  margin: 0;
+}
+.label p {
+  margin: 0;
+}
+.select {
+  padding: 8px;
+  border: 1px solid var(--violet);
+  border-radius: 5px;
 }
 /*-----------------------------------------------------------------------------------------*/
-.container-two{
-    display: grid;
+.container-two {
+  display: grid;
 }
-.input-description{
-    width: 150px;
-    height: 20px;
-    border-radius: 5px;
-    border: 1px solid var(--violet);
+.input-description {
+  padding: 2px;
+  width: 260px;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid var(--violet);
 }
 
-
 /*-----------------------------------------------------------------------------------------*/
-.container-thre{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto;
-    justify-content: center;
+.container-thre {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 45px;
 }
-.input-hour{
-    width: 40px;
-    height: 20px;
-    margin-left: 40px;
-    border-radius: 5px;
-    border: 1px solid var(--violet);
+.input-hour {
+  width: 40px;
+  height: 20px;
+
+  border-radius: 5px;
+  border: 1px solid var(--violet);
 }
-.total{
-    width: 40px;
+.total {
+  width: 40px;
 }
 .input-hour[type="number"] {
-    text-align: center;
-  }
-.button-insert{
-    width: 20%;
-    height: 27px;
-    background-color: var(--violet);
-    color: var(--white);
-    border: 0;
-    border-radius: 20px;;
+  text-align: center;
+}
+.button-insert {
+  margin: auto;
+  width: 200px;
+  height: 30px;
+
+  background-color: var(--violet);
+  color: var(--white);
+  border: 0;
+  border-radius: 20px;
 }

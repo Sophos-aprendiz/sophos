@@ -1,16 +1,15 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-:root{
-    --violet:#9b43fb;
-    --black:#0C0C0C;
-    --white: #ffffff
-
+:root {
+  --violet: #9b43fb;
+  --black: #0c0c0c;
+  --white: #ffffff;
 }
-body{
-    font-family: 'Poppins', sans-serif;
+body {
+  font-family: "Poppins", sans-serif;
 }
-button{
-    cursor: pointer;
+button {
+  cursor: pointer;
 }

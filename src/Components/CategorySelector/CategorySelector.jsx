@@ -40,17 +40,20 @@ const CategorySelector = () => {
   }, [category, proyectId]);
 
   return (
-    <select onChange={handleOnChange} className="select">
-      {listCategories.length ? (
-        listCategories.map((category, index) => (
-          <option value={category.categoryId} key={index}>
-            {category.categoryName}
-          </option>
-        ))
-      ) : (
-        <option>No hay Categorias</option>
-      )}
-    </select>
+    <div className="label">
+      <p>Nombre Categoria:</p>
+      <select onChange={handleOnChange} className="select">
+        {listCategories.length ? (
+          listCategories.map((category, index) => (
+            <option value={category.categoryId} key={index}>
+              {category.categoryName}
+            </option>
+          ))
+        ) : (
+          <option>No hay Categorias</option>
+        )}
+      </select>
+    </div>
   );
 };
 
