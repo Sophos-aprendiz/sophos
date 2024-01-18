@@ -1,4 +1,4 @@
-// InsertTimeEntry.jsx
+// useInsertTimeEntry.jsx
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import useGetFirstWeek from "./useGetFirstWeek";
@@ -6,47 +6,33 @@ import { formatDate } from "../utils/formatDate";
 import { TimeSheetContext } from "../Components/context";
 
 const useInsertTimeEntry = () => {
-  const [token, setToken] = useState("");
   const [insert, setInsert] = useState("");
+  const [userName, setUserName] = useState("");
   const [loading, setLoading] = useState(true);
   const [week] = useGetFirstWeek();
-  const userName = window.localStorage.getItem("user");
+  const authToken = window.localStorage.getItem("tokken");
   const { setUpdtaTimeSheet } = useContext(TimeSheetContext);
 
-  const getToken = async () => {
-    try {
-      const url =
-        "https://testapp.sophossolutions.com/SophosApiChronus/api/Token";
-      const credentials = {
-        user: "UserSophosChronus.Api",
-        password: "Sophos.2020*#",
-      };
-      const { data } = await axios.post(url, credentials);
-      setToken(data.token);
-    } catch (error) {
-      console.error("Error al obtener el token:", error);
-      setLoading(false);
-    }
-  };
   useEffect(() => {
-    getToken();
-  }, []); // Llamada solo al montar el componente
+    const storedUserName = window.localStorage.getItem("user");
+    setUserName(storedUserName);
+  }, []);
 
   const postInsert = async (dias, description, idCategory) => {
     try {
-      if (!token) {
+      setLoading(true);
+
+      if (!authToken) {
         console.error("Token no disponible. La inserción no se realizará.");
         return;
       }
-
       const urlInsert =
         "https://testapp.sophossolutions.com/SophosApiChronus/api/dbo/User/InsertTimeEntry";
       const headers = {
         "Content-Type": "application/json",
         accept: "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${authToken}`,
       };
-
       const body = {
         categoryId: idCategory,
         timeEntryCreatorUserName: userName,
@@ -66,18 +52,17 @@ const useInsertTimeEntry = () => {
         mensaje: "string",
         whodidit: userName,
       };
-
       const response = await axios.post(urlInsert, body, { headers });
       setInsert(response.data);
       setUpdtaTimeSheet((state) => ++state);
     } catch (error) {
       console.error("Error al insertar:", error);
     } finally {
-      setLoading(false);
+      setLoading(false); // Establecer loading a false después de la solicitud (incluso si hay un error)
     }
   };
 
-  return { insert, loading, postInsert };
+  return { insert, userName, loading, postInsert };
 };
 
 export default useInsertTimeEntry;

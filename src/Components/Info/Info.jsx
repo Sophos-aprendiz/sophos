@@ -66,7 +66,7 @@ const Info = () => {
       }
     } else toast.error("Seleccione un proyecto");
   };
-
+  
   // Renderizado del componente
   return (
     <div className="container-info">
@@ -159,7 +159,8 @@ const Info = () => {
       </div>
       <button className="button-insert" onClick={() => handleInsert()}>
         Insertar
-      </button>
+      </button> 
+     
     </div>
   );
 };

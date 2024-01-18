@@ -4,6 +4,8 @@ import "./TimeSheetItem.css";
 import { useState } from "react";
 import { useUpdateTimeEntry } from "../../hooks/useUpdateTimeEntry";
 import toast from "react-hot-toast";
+import DeleteTimeEntry from "../../hooks/DeleteTimeEntry";
+
 const TimeSheetItem = ({
   areaName,
   clientName,
@@ -67,6 +69,18 @@ const TimeSheetItem = ({
   const calcularTotal = () => {
     const total = Object.values(dias).reduce((acc, curr) => acc + curr, 0);
     return total;
+  };
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const handleDeleteClick = () => {
+    console.log('Botón de eliminación clickeado');
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    console.log('Cerrando el modal de eliminación');
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -184,6 +198,32 @@ const TimeSheetItem = ({
         size={16}
         color="purple"
       />
+      <div>{areaName}</div>
+      <div>{clientName}</div>
+      <div>{projectName}</div>
+      <div>{categoryName}</div>
+      <div>{projectDescription}</div>
+      <div className="day">{monday}</div>
+      <div className="day">{tuesday}</div>
+      <div className="day">{wednesday}</div>
+      <div className="day">{thursday}</div>
+      <div className="day">{friday}</div>
+      <div className="day">{saturday}</div>
+      <div className="day">{sunday}</div>
+      <div className="day">{total}</div>
+      <IconEdit size={16} color="purple" />
+
+      {/* Utiliza un botón para el ícono de eliminación */}
+      <button className="delete-button" onClick={handleDeleteClick}>
+        <IconX size={16} color="purple" />
+      </button>
+
+      {isDeleteModalOpen && (
+        <div className="delete-modal">
+          {/* Pasa correctamente el timeEntryId al componente DeleteTimeEntry */}
+          <DeleteTimeEntry timeEntryId={timeEntryId} onClose={handleCloseModal} />
+        </div>
+      )}
     </div>
   );
 };
