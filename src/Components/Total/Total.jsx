@@ -41,15 +41,13 @@ const Total = () => {
           </td>
 
           <td>
-            <strong>
-              <p
-                style={{
-                  fontSize: "14px",
-                }}
-              >
-                {section.hours.total}
-              </p>
-            </strong>
+            <p
+              style={{
+                fontSize: "14px",
+              }}
+            >
+              {section.hours.total}
+            </p>
           </td>
         </tr>
       ))}
