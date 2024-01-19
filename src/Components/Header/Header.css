@@ -1,6 +1,5 @@
 header {
   background-color: var(--white);
-
   padding: 12px;
   color: var(--white);
   display: flex;
@@ -79,4 +78,9 @@ header div img {
 
 .dropdown-menu :hover {
   background-color: #f0f0f0;
+}
+
+.logo{
+  width: 300px;
+  height: 70px;
 }

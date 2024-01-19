@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useMsal } from "@azure/msal-react";
-import logo from "../../assets/logo-violet.png";
+import logo from "../../assets/favi.png";
 import user from "../../assets/user.png";
 import "./Header.css";
 import logOut from "../../assets/logout.png";
@@ -19,7 +19,7 @@ const Header = ({ email }) => {
   };
   return (
     <header>
-      <img src={logo} />
+      <img className="logo" src={logo} />
 
       <div className="header-content">
         <img src={user} />

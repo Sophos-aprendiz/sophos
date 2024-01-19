@@ -2,6 +2,7 @@ import "./Block.css";
 import Info from "../Info/Info";
 import Total from "../Total/Total";
 import Input from "../Inputs/Input";
+import logo from "../../assets/favi.png";
 import { TimeSheet } from "../TimeSheet/TimeSheet";
 import { useContext } from "react";
 import { TimeSheetContext } from "../context";
@@ -21,6 +22,7 @@ const Block = () => {
           <Spinner />
         ) : (
           <>
+          <img className="logoChronus" src={logo}/>
             <Input handleOnChange={handleOnChange} />
 
             <Info />
